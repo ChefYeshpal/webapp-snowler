@@ -147,6 +147,27 @@ body {
 	background: rgba(255, 255, 255, 0.1);
 }
 
+.option {
+    border: 3px solid black;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.option:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.option.elevated {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.option.disappear {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 .caret {
 	display: inline-block;
 	width: 0.7ch;

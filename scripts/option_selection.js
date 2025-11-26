@@ -69,12 +69,31 @@
 		currentChoices = [];
 	};
 
+	const elevateOption = (index) => {
+		const buttons = getButtons();
+		buttons.forEach((button, buttonIndex) => {
+			button.classList.toggle('elevated', buttonIndex === index);
+		});
+	};
+
+	const disappearOption = (index) => {
+		const buttons = getButtons();
+		const targetButton = buttons[index];
+		if (targetButton) {
+			targetButton.classList.add('disappear');
+			setTimeout(() => {
+				targetButton.remove();
+			}, 300); 
+		}
+	};
+
 	const chooseOption = (index) => {
 		const choice = currentChoices[index];
 		if (!choice) {
 			return;
 		}
 
+		disappearOption(index);
 		hidePanel();
 		storyTyper.enqueueLines(choice.followUp);
 	};
@@ -90,6 +109,7 @@
 			const index = Number.parseInt(key, 10) - 1;
 			if (index >= 0 && index < currentChoices.length) {
 				highlightOption(index);
+				elevateOption(index);
 				event.preventDefault();
 			}
 			return;
