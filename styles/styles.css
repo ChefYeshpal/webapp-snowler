@@ -90,6 +90,63 @@ body {
 	font-weight: 700;
 }
 
+.choice-panel {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	justify-content: center;
+	align-items: stretch;
+	margin: 1.4rem auto 0;
+	padding: 0.9rem 1.1rem;
+	max-width: min(520px, 92vw);
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 14px;
+	transition: opacity 200ms ease, transform 220ms ease;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(8px);
+}
+
+.choice-panel--visible {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
+}
+
+.choice-panel[hidden] {
+	display: none;
+}
+
+.choice-option {
+	flex: 1 1 180px;
+	padding: 0.7rem 1rem;
+	border-radius: 12px;
+	color: var(--accent-color);
+	font-size: 0.95rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: color 160ms ease, text-shadow 160ms ease, background 160ms ease;
+	background: transparent;
+}
+
+.choice-option:hover {
+	color: #4a90e2;
+	text-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.choice-option:focus-visible {
+	outline: 2px solid rgba(27, 76, 107, 0.55);
+	outline-offset: 3px;
+}
+
+.choice-option--active {
+	color: #1e5f99;
+	text-shadow: 0 0 6px rgba(30, 95, 153, 0.4);
+	background: rgba(255, 255, 255, 0.1);
+}
+
 .caret {
 	display: inline-block;
 	width: 0.7ch;
