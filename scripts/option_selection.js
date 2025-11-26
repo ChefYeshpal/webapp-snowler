@@ -24,7 +24,8 @@
 			followUp: [
 				'Chosen: Gather wood',
 				'You decide to gather any flammable material you can find.',
-				'Moving around trying to conserve your body heat, while gathering any dry sticks you can.'
+				'Moving around trying to conserve your body heat, while gathering any dry sticks you can.',
+                'You notice there \'s a lighter in your bocket...'
 			],
 		},
 	];
