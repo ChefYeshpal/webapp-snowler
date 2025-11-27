@@ -8,53 +8,119 @@
 		return;
 	}
 
-	const baseChoices = [
-		{
+	const gatherWoodFollowUp = [
+		'Chosen: gather wood',
+		'You decide to sweep the tree line for anything that will burn.',
+		'Moving around trying to conserve your body heat, while gathering any dry sticks you can.',
+		'There\'s a lighter in your pocket...',
+		'Will you take it out to start a fire?'
+	];
+
+	const choiceCatalog = {
+		trail: {
 			id: 'trail',
 			label: 'Walk on the trail',
 			followUp: [
-				'chosen: walk on the trail',
-				'You walk on the trail, the snow crunches against your boots.',
-				'Looking around, you notice that the forest is eerily quiet...',
-				'You keep walking, keeping an ear out for any sound you can hear',
-				'The sun is half-way up now',
+				'Chosen: walk on the trail',
+				'You crunch along the trail, every step punching through a crust of glittering ice.',
+				'Looking around, you notice that the forest is eerily quiet save for distant groans of bending trunks.',
+				'You keep walking, keeping an ear out for any sound you can hear.',
+				'The sun is half-way up now, a pale smear behind bruised clouds.',
 				'Do you still not want to build a fire?'
 			],
 		},
-		{
+		'gather-wood': {
 			id: 'gather-wood',
 			label: 'Gather wood',
-			followUp: [
-				'Chosen: Gather wood',
-				'You decide to gather any flammable material you can find.',
-				'Moving around trying to conserve your body heat, while gathering any dry sticks you can.',
-                'There \'s a lighter in your bocket...',
-				'Will you take it out to start a fire?'
-			],
+			followUp: gatherWoodFollowUp,
 		},
-	];
-
-	const extendedChoices = [
-		{
+		'collect-more-wood': {
+			id: 'collect-more-wood',
+			label: 'Collect more wood',
+			followUp: gatherWoodFollowUp,
+		},
+		'keep-walking': {
 			id: 'keep-walking',
 			label: 'Keep walking',
 			followUp: [
 				'Chosen: keep walking',
-				'You keep walking',
+				'You lower your head and push onward, the trail a thread of frost threading between pines.',
+				'Wind gnaws at your exposed cheeks, stealing warmth in greedy bites.',
+				'Your breath hangs in the darkening pines like smoke from a dying candle.',
+				'Night chews away the remaining light. Do you keep moving or double back for warmth?'
 			],
 		},
-		{
+		'keep-walking-final': {
+			id: 'keep-walking-final',
+			label: 'Keep moving',
+			followUp: [
+				'Chosen: keep moving',
+				'You lean into the gale, marching until your legs feel hollow and brittle.',
+				'Needles of ice chew through your trousers, skin burning before it fades to nothing.',
+				'Vision tunnels; the drift ahead looks like a soft bed inviting you to rest.',
+				'You sink down, promising yourself only a minute.',
+				'Choice: keep walking',
+				'The cold steals your pulse. Hypothermia writes your final lullaby beneath the silent pines.'
+			],
+		},
+		'return-for-wood': {
+			id: 'return-for-wood',
+			label: 'Double back for warmth',
+			followUp: [
+				'Chosen: double back for warmth',
+				'You pivot, stumbling through your own half-erased footprints.',
+				'Each step stings new life into your legs as you chase the promise of flame.',
+				'You find the cluster of sticks you abandoned, rimed with frost and waiting.',
+				'Will you take it out to start a fire?'
+			],
+		},
+		'start-fire': {
 			id: 'start-fire',
 			label: 'Get a fire going',
 			followUp: [
 				'Chosen: start a fire',
-				'You get on your knees, and pile the sticks up',
-				'your fingers snapping the lighter',
+				'You get on your knees, stacking the sticks with trembling precision.',
+				'Your fingers snap the lighter; sparks leap until a reluctant ember blooms.',
+				'Orange light stains the snow, smoke curling like a signal toward the bruise-colored sky.',
+				'Heat crawls back into your bones, painful and glorious.',
+				'The fire steadies. Stay put or make a plan?'
 			],
 		},
-	];
+		'stay-with-fire': {
+			id: 'stay-with-fire',
+			label: 'Stay with the fire',
+			followUp: [
+				'Chosen: stay with the fire',
+				'You hunch close, feeding the blaze careful breaths of bark and twig.',
+				'Sparks drift upward like tiny prayers and, after hours of shivering patience, the forest finally answers.',
+				'Choice: wait for help',
+				'A rescue chopper ghosts overhead, spotting your frantic waving.',
+				'You survive the night, teeth rattling but alive.'
+			],
+		},
+		'scout-with-torch': {
+			id: 'scout-with-torch',
+			label: 'Scout with a torch',
+			followUp: [
+				'Chosen: scout with a torch',
+				'You snap a burning branch free and stalk into the trees, the flame painting skeletal trunks gold.',
+				'The wind smears smoke across your face while shadows jump like startled animals.',
+				'You stumble upon a gutted ranger station, its doorway yawning dark but promising shelter.',
+				'Inside, a dusty cot and a wheezing radio wait for patient hands.',
+				'Choice: firebrand march',
+				'You thaw out beneath a real roof as static slowly shapes into a human voice. Dawn feels possible again.'
+			],
+		},
+	};
 
-	let choicesHaveDisplayed = false;
+	const promptChoiceMap = {
+		'What will you do?': ['trail', 'gather-wood'],
+		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking'],
+		'Will you take it out to start a fire?': ['collect-more-wood', 'start-fire'],
+		'Night chews away the remaining light. Do you keep moving or double back for warmth?': ['keep-walking-final', 'return-for-wood'],
+		'The fire steadies. Stay put or make a plan?': ['stay-with-fire', 'scout-with-torch'],
+	};
+
 	let currentChoices = [];
 	let highlightedIndex = -1;
 	let hideTimer = null;
@@ -174,20 +240,18 @@
 	document.addEventListener('story:line-complete', (event) => {
 		const rawText = event?.detail?.text ?? '';
 		const matchingText = rawText.trim();
+		const choiceIds = promptChoiceMap[matchingText];
 
-		if (!choicesHaveDisplayed && matchingText === 'What will you do?') {
-			choicesHaveDisplayed = true;
-			showChoices(baseChoices);
-		} else if (matchingText === 'Do you still not want to build a fire?') {
-			showChoices([
-				baseChoices.find(choice => choice.id === 'gather-wood'),
-				extendedChoices.find(choice => choice.id === 'keep-walking'),
-			]);
-		} else if (matchingText === 'Will you take it out to start a fire?') {
-			showChoices([
-				baseChoices.find(choice => choice.id === 'gather-wood'),
-				extendedChoices.find(choice => choice.id === 'start-fire'),
-			]);
+		if (!choiceIds) {
+			return;
+		}
+
+		const choices = choiceIds
+			.map((choiceId) => choiceCatalog[choiceId])
+			.filter(Boolean);
+
+		if (choices.length > 0) {
+			showChoices(choices);
 		}
 	});
 })();
