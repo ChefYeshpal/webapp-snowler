@@ -23,6 +23,51 @@
             detail: 'The blizzard does not bargain. Your core temperature slips away until even fear freezes.',
             extra: 'Snow piles faster than breath, burying every trace you left behind.',
         },
+        frostbite: {
+            title: 'GAME OVER — Frostbite',
+            detail: 'Your hands turn to glass, then stone; pain blooms and vanishes. The forest offers no grip to a numb traveler.',
+            extra: 'Blackened fingertips write a final message on the snow: too late.',
+        },
+        exhaustion: {
+            title: 'GAME OVER — Exhaustion',
+            detail: 'Steps become numbers. Numbers become nothing. You lie down “just to rest” and the night tucks you in forever.',
+            extra: 'Somewhere, the wind counts to zero.',
+        },
+        starvation: {
+            title: 'GAME OVER — Starvation',
+            detail: 'Hunger scrapes you hollow. Strength drains until even hope feels heavy.',
+            extra: 'The pines keep their needles; you keep your silence.',
+        },
+        avalanche: {
+            title: 'GAME OVER — Avalanche',
+            detail: 'The slope shivers, then roars. White thunder swallows your name before you can breathe it.',
+            extra: 'Stillness returns, pretending nothing happened.',
+        },
+        lost: {
+            title: 'GAME OVER — Lost',
+            detail: 'Circles carve circles. Every landmark repeats until the map in your head erases itself.',
+            extra: 'The trail exists. Just not where you are.',
+        },
+        injury: {
+            title: 'GAME OVER — Injury',
+            detail: 'A fall, a crack, and the world sharpens into pain. Cold finishes what gravity started.',
+            extra: 'Your breath paints the snow until it doesn’t.',
+        },
+        cave_collapse: {
+            title: 'GAME OVER — Cave-In',
+            detail: 'Stone shifts like memory. The entrance narrows to a secret you cannot tell.',
+            extra: 'Echoes fade with the last ember.',
+        },
+        predator: {
+            title: 'GAME OVER — Predator',
+            detail: 'The timberline watches with older eyes. Teeth glint where your torch cannot reach.',
+            extra: 'The forest keeps what it finds.',
+        },
+        smoke_inhalation: {
+            title: 'GAME OVER — Smoke Inhalation',
+            detail: 'Fire gives heat and takes air. Coughs stack until the dark outweighs the orange.',
+            extra: 'Soot settles like snow inside your lungs.',
+        },
         default: {
             title: 'GAME OVER',
             detail: 'Your time in the pines ends here.',

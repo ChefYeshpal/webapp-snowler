@@ -175,8 +175,11 @@
 				'Chosen: barricade the entrance',
 				'You pile rocks and branches at the cave entrance, sealing yourself inside.',
 				'The growling fades as you huddle by the fire, waiting for dawn.',
-				'When morning comes, you clear the barricade and step into the frosty light, alive but shaken.'
+				'The smoke thickens, your coughs stacking faster than your breaths.',
+				'You lie close to the coals, eyes watering until the dark outweighs the orange.'
 			],
+			terminal: true,
+			terminalReason: 'smoke_inhalation'
 		},
 		'follow-stream': {
 			id: 'follow-stream',
@@ -188,6 +191,30 @@
 				'Inside, there’s a rusted stove and a pile of moth-eaten blankets.',
 				'Do you try to repair the cabin or move on?'
 			],
+		},
+		'slip-on-ice': {
+			id: 'slip-on-ice',
+			label: 'Hurry along the ice',
+			followUp: [
+				'Chosen: hurry along the ice',
+				'You quicken your pace on the glassy stream-bed, breath sharp and eager.',
+				'A soundless misstep, then the world tilts—your leg buckles with a brittle crack.',
+				'Cold patience settles in while the sky turns indifferent.'
+			],
+			terminal: true,
+			terminalReason: 'injury'
+		},
+		'linger-too-long': {
+			id: 'linger-too-long',
+			label: 'Ignore food and rest',
+			followUp: [
+				'Chosen: ignore food and rest',
+				'You ration nothing and push through the ache, promising a later reward.',
+				'The promise runs out before the day does; your steps blur, thoughts thin.',
+				'You sit down “just a minute.” The forest agrees.'
+			],
+			terminal: true,
+			terminalReason: 'starvation'
 		},
 	};
 
@@ -202,6 +229,8 @@
 		'Do you investigate the sound or barricade the entrance?': ['investigate-sound', 'barricade-entrance'],
 		'Do you help the wolf or retreat to the entrance?': ['help-wolf', 'return-for-wood'],
 		'Do you try to repair the cabin or move on?': ['stay-with-fire', 'keep-walking'],
+		'The frozen stream looks fast and safe. Hurry or take care?': ['slip-on-ice', 'trail'],
+		'Food can wait, right? Rest or push on?': ['linger-too-long', 'keep-walking'],
 	};
 
 	let currentChoices = [];
