@@ -62,7 +62,6 @@
 				'Choice: keep walking',
 				'The cold steals your pulse. Hypothermia writes your final lullaby beneath the silent pines.'
 			],
-			// terminal branch: hypothermia causes final death
 			terminal: true,
 			terminalReason: 'hypothermia'
 		},
@@ -113,6 +112,110 @@
 				'Choice: firebrand march',
 				'You thaw out beneath a real roof as static slowly shapes into a human voice. Dawn feels possible again.'
 			],
+		},
+		'follow-distant-lights': {
+			id: 'follow-distant-lights',
+			label: 'Follow distant lights',
+			followUp: [
+				'Chosen: follow distant lights',
+				'Across the valley, a row of warm, unmoving stars—windows—blink through the white.',
+				'You angle downhill, guarding your balance, calling out when the wind dips.',
+				'A plowed road appears like a river of gravel. A truck idles, then a door opens.',
+				'Gloved hands help you into heat and questions. You made it.'
+			],
+			terminal: true,
+			terminalReason: 'rescued'
+		},
+		'whiteout-storm': {
+			id: 'whiteout-storm',
+			label: 'Press into the storm',
+			followUp: [
+				'Chosen: press into the storm',
+				'The sky erases the horizon; snow becomes air, air becomes snow.',
+				'Your world shrinks to an arm’s length of ghosts.',
+				'Do you hunker down or keep moving blindly?'
+			],
+		},
+		'hunker-down-storm': {
+			id: 'hunker-down-storm',
+			label: 'Hunker down and wait',
+			followUp: [
+				'Chosen: hunker down',
+				'You crawl behind a fallen tree, pack the windward side with snow, and light a tight, low fire.',
+				'You ration breaths and seconds; the storm spends itself over you like an angry ocean.',
+				'When the white peels back, you emerge slower but alive.'
+			],
+		},
+		'blind-march-storm': {
+			id: 'blind-march-storm',
+			label: 'Keep moving blindly',
+			followUp: [
+				'Chosen: keep moving blindly',
+				'You chase a phantom ridge and step into nothing—snow hides the drop until it doesn’t.',
+				'The landing steals the wind from your lungs; the white keeps the rest.',
+			],
+			terminal: true,
+			terminalReason: 'avalanche'
+		},
+		'raider-encounter': {
+			id: 'raider-encounter',
+			label: 'Approach shouting figures',
+			followUp: [
+				'Chosen: approach shouting figures',
+				'Silhouettes crest the drift, faces wrapped, voices hard. Not rescuers—opportunists.',
+				'Do you run or try to parley?'
+			],
+		},
+		'run-from-raiders': {
+			id: 'run-from-raiders',
+			label: 'Run for it',
+			followUp: [
+				'Chosen: run for it',
+				'You bolt into the timberline, branches clawing and snow grabbing ankles.',
+				'A crack splits the quiet. You fall into it and don’t get up.'
+			],
+			terminal: true,
+			terminalReason: 'injury'
+		},
+		'parley-with-raiders': {
+			id: 'parley-with-raiders',
+			label: 'Parley and offer supplies',
+			followUp: [
+				'Chosen: parley with raiders',
+				'You raise empty hands, offer food and a spare light. Their answer is short and final.',
+				'The snow drinks the sound.'
+			],
+			terminal: true,
+			terminalReason: 'predator'
+		},
+		'wolf-prowl': {
+			id: 'wolf-prowl',
+			label: 'Veer toward howls',
+			followUp: [
+				'Chosen: veer toward howls',
+				'Howls stitch through the pines. Curiosity outruns caution.',
+				'Shapes fan out, low and deliberate. Do you brandish fire or freeze?'
+			],
+		},
+		'brandish-fire': {
+			id: 'brandish-fire',
+			label: 'Brandish the torch',
+			followUp: [
+				'Chosen: brandish the torch',
+				'Flame blooms wide; the pack hesitates, eyes flicking. You back away, slow and speaking.',
+				'The forest swallows the sound. You live another hour.'
+			],
+		},
+		'freeze-before-pack': {
+			id: 'freeze-before-pack',
+			label: 'Freeze and hope',
+			followUp: [
+				'Chosen: freeze and hope',
+				'Predators read silence like a map. The circle tightens, then breaks.',
+				'Winter does the rest.'
+			],
+			terminal: true,
+			terminalReason: 'predator'
 		},
 		'find-shelter': {
 			id: 'find-shelter',
@@ -231,6 +334,12 @@
 		'Do you try to repair the cabin or move on?': ['stay-with-fire', 'keep-walking'],
 		'The frozen stream looks fast and safe. Hurry or take care?': ['slip-on-ice', 'trail'],
 		'Food can wait, right? Rest or push on?': ['linger-too-long', 'keep-walking'],
+		'A row of lights winks through the storm. Follow or stay?': ['follow-distant-lights', 'stay-with-fire'],
+		'The air turns to whiteness. Hunker down or press forward?': ['hunker-down-storm', 'blind-march-storm'],
+		'Shouting ahead. Figures on the ridge. Approach or avoid?': ['raider-encounter', 'whiteout-storm'],
+		'Do you run or try to parley?': ['run-from-raiders', 'parley-with-raiders'],
+		'Howls to the east. Investigate or steer away?': ['wolf-prowl', 'trail'],
+		'Show fire or stay still?': ['brandish-fire', 'freeze-before-pack'],
 	};
 
 	let currentChoices = [];
