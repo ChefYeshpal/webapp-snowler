@@ -1,12 +1,25 @@
 (() => {
-	const SNOWFLAKE_COUNT = 120;
+	const BASE_SNOWFLAKE_COUNT = 120;
+	let targetFlakeCount = BASE_SNOWFLAKE_COUNT;
+	let intensityMultiplier = 1;
 	const layer = document.createElement('div');
 	layer.className = 'snow-layer';
 	layer.setAttribute('aria-hidden', 'true');
 	document.body.prepend(layer);
 
+	// accumulation drift element (hidden until triggered)
+	const drift = document.createElement('div');
+	drift.className = 'snow-drift';
+	drift.setAttribute('aria-hidden', 'true');
+	document.body.appendChild(drift);
+	const driftLabel = document.createElement('div');
+	driftLabel.className = 'snow-drift__label';
+	drift.appendChild(driftLabel);
+
 	const randomBetween = (min, max) => Math.random() * (max - min) + min;
 	const flakes = [];
+	let accumulationActive = false;
+	let accumulationProgress = 0;
 	let viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 	let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
@@ -29,19 +42,30 @@
 		};
 	};
 
-	const ensureFlakes = () => {
-		while (flakes.length < SNOWFLAKE_COUNT) {
-			flakes.push(createFlake());
-		}
-	};
-
 	const resetFlake = (flake, initialPlacement = false) => {
 		flake.baseX = randomBetween(-viewportWidth * 0.1, viewportWidth * 1.1);
 		flake.y = initialPlacement ? randomBetween(-viewportHeight, viewportHeight) : randomBetween(-viewportHeight, 0);
-		flake.speed = randomBetween(0.035, 0.09);
-		flake.amplitude = randomBetween(12, 28);
+		const speedBoost = 0.6 + intensityMultiplier * 0.55;
+		const swayBoost = 0.6 + intensityMultiplier * 0.4;
+		flake.speed = randomBetween(0.035, 0.09) * speedBoost;
+		flake.amplitude = randomBetween(12, 28) * swayBoost;
 		flake.driftFrequency = randomBetween(0.00075, 0.0018);
 		flake.driftOffset = Math.random() * Math.PI * 2;
+	};
+
+	const ensureFlakes = () => {
+		while (flakes.length < targetFlakeCount) {
+			const flake = createFlake();
+			flakes.push(flake);
+			resetFlake(flake, true);
+		}
+	};
+
+	const trimFlakes = () => {
+		while (flakes.length > targetFlakeCount) {
+			const flake = flakes.pop();
+			flake.element.remove();
+		}
 	};
 
 	const initialiseField = () => {
@@ -54,7 +78,11 @@
 	const animate = (time) => {
 		const delta = time - lastTime;
 		lastTime = time;
+		ensureFlakes();
+		const opacityFactor = Math.min(1, intensityMultiplier / 4);
+		layer.style.opacity = `${0.35 + opacityFactor * 0.65}`;
 
+		// gradually nudge opacity for a slightly more visible storm when many flakes exist
 		flakes.forEach((flake) => {
 			flake.y += flake.speed * delta;
 			const sway = Math.sin(time * flake.driftFrequency + flake.driftOffset) * flake.amplitude;
@@ -84,4 +112,41 @@
 
 	initialiseField();
 	requestAnimationFrame(animate);
+
+	// public API for other scripts to call
+	const setIntensity = (multiplier) => {
+		multiplier = Math.max(0.25, Number(multiplier) || 1);
+		intensityMultiplier = multiplier;
+		targetFlakeCount = Math.round(BASE_SNOWFLAKE_COUNT * multiplier);
+		ensureFlakes();
+		trimFlakes();
+	};
+
+	const startAccumulation = () => {
+		if (accumulationActive) {
+			return;
+		}
+		accumulationActive = true;
+		setIntensity(Math.max(intensityMultiplier, 7));
+		const duration = 28000;
+		const depthMax = 140; // cm equivalent for display
+		const startTime = performance.now();
+		const step = (now) => {
+			const progress = Math.min(1, (now - startTime) / duration);
+			accumulationProgress = progress;
+			drift.style.height = `${progress * 100}%`;
+			const depth = Math.round(progress * depthMax);
+			driftLabel.textContent = `Snow depth: ${depth}cm`;
+			driftLabel.style.opacity = Math.min(1, progress * 1.2);
+			if (progress < 1) {
+				requestAnimationFrame(step);
+			}
+		};
+		requestAnimationFrame(step);
+	};
+
+	window.snowAPI = {
+		setIntensity,
+		startAccumulation,
+	};
 })();

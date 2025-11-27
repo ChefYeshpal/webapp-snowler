@@ -62,6 +62,9 @@
 				'Choice: keep walking',
 				'The cold steals your pulse. Hypothermia writes your final lullaby beneath the silent pines.'
 			],
+			// terminal branch: hypothermia causes final death
+			terminal: true,
+			terminalReason: 'hypothermia'
 		},
 		'return-for-wood': {
 			id: 'return-for-wood',
@@ -183,9 +186,21 @@
 			return;
 		}
 
+		// record choice in global tracker (if available)
+		if (window.choiceTracker && typeof window.choiceTracker.record === 'function') {
+			window.choiceTracker.record(choice.id);
+		}
+
 		disappearOption(index);
 		hidePanel();
 		storyTyper.enqueueLines(choice.followUp);
+
+	
+		if (choice.terminal) {
+			if (window.gameOverManager && typeof window.gameOverManager.prepareEnd === 'function') {
+				window.gameOverManager.prepareEnd(choice.terminalReason || null);
+			}
+		}
 	};
 
 	const handleKeyDown = (event) => {
@@ -235,6 +250,14 @@
 		currentChoices = choices.slice();
 		highlightedIndex = -1;
 		document.addEventListener('keydown', handleKeyDown, true);
+
+		document.dispatchEvent(
+			new CustomEvent('story:choice-presented', {
+				detail: {
+					choices: choices.map((choice) => choice.id),
+				},
+			})
+		);
 	};
 
 	document.addEventListener('story:line-complete', (event) => {
