@@ -1,4 +1,4 @@
-// Handles branching option selection once prompt lines appear.
+// Handles branching option selection once prompt lines appear
 
 (function () {
 	const storyTyper = window.storyTyper;
@@ -15,7 +15,10 @@
 			followUp: [
 				'chosen: walk on the trail',
 				'You walk on the trail, the snow crunches against your boots.',
-				'Looking around, you notice that the forest is eerily quiet...'
+				'Looking around, you notice that the forest is eerily quiet...',
+				'You keep walking, keeping an ear out for any sound you can hear',
+				'The sun is half-way up now',
+				'Do you still not want to build a fire?'
 			],
 		},
 		{
@@ -25,7 +28,28 @@
 				'Chosen: Gather wood',
 				'You decide to gather any flammable material you can find.',
 				'Moving around trying to conserve your body heat, while gathering any dry sticks you can.',
-                'You notice there \'s a lighter in your bocket...'
+                'There \'s a lighter in your bocket...',
+				'Will you take it out to start a fire?'
+			],
+		},
+	];
+
+	const extendedChoices = [
+		{
+			id: 'keep-walking',
+			label: 'Keep walking',
+			followUp: [
+				'Chosen: keep walking',
+				'You keep walking',
+			],
+		},
+		{
+			id: 'start-fire',
+			label: 'Get a fire going',
+			followUp: [
+				'Chosen: start a fire',
+				'You get on your knees, and pile the sticks up',
+				'your fingers snapping the lighter',
 			],
 		},
 	];
@@ -154,6 +178,16 @@
 		if (!choicesHaveDisplayed && matchingText === 'What will you do?') {
 			choicesHaveDisplayed = true;
 			showChoices(baseChoices);
+		} else if (matchingText === 'Do you still not want to build a fire?') {
+			showChoices([
+				baseChoices.find(choice => choice.id === 'gather-wood'),
+				extendedChoices.find(choice => choice.id === 'keep-walking'),
+			]);
+		} else if (matchingText === 'Will you take it out to start a fire?') {
+			showChoices([
+				baseChoices.find(choice => choice.id === 'gather-wood'),
+				extendedChoices.find(choice => choice.id === 'start-fire'),
+			]);
 		}
 	});
 })();
