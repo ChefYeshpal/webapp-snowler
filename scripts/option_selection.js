@@ -114,14 +114,94 @@
 				'You thaw out beneath a real roof as static slowly shapes into a human voice. Dawn feels possible again.'
 			],
 		},
+		'find-shelter': {
+			id: 'find-shelter',
+			label: 'Search for shelter',
+			followUp: [
+				'Chosen: search for shelter',
+				'You decide to leave the trail and venture deeper into the forest.',
+				'The trees grow denser, their skeletal branches clawing at the sky.',
+				'You stumble upon a rocky overhang that offers some protection from the wind.',
+				'Inside, you find traces of an old campfire. Will you try to rekindle it or keep searching?'
+			],
+		},
+		'keep-searching': {
+			id: 'keep-searching',
+			label: 'Keep searching',
+			followUp: [
+				'Chosen: keep searching',
+				'You push further into the forest, the cold biting deeper with every step.',
+				'The sound of running water catches your attention, leading you to a frozen stream.',
+				'Nearby, you spot a small cave entrance partially hidden by snow.',
+				'Do you enter the cave or follow the stream?'
+			],
+		},
+		'enter-cave': {
+			id: 'enter-cave',
+			label: 'Enter the cave',
+			followUp: [
+				'Chosen: enter the cave',
+				'The cave is dark and damp, but it shields you from the wind.',
+				'You light a small fire, the flickering flames casting eerie shadows on the walls.',
+				'As you settle in, you hear a faint growl from deeper within the cave.',
+				'Do you investigate the sound or barricade the entrance?'
+			],
+		},
+		'investigate-sound': {
+			id: 'investigate-sound',
+			label: 'Investigate the sound',
+			followUp: [
+				'Chosen: investigate the sound',
+				'You cautiously move deeper into the cave, the growl growing louder.',
+				'Your torchlight reveals a wounded wolf, its eyes glinting with fear and pain.',
+				'Do you help the wolf or retreat to the entrance?'
+			],
+		},
+		'help-wolf': {
+			id: 'help-wolf',
+			label: 'Help the wolf',
+			followUp: [
+				'Chosen: help the wolf',
+				'You approach slowly, offering soothing words as you tend to its wound.',
+				'The wolf watches you warily but doesn’t resist.',
+				'As dawn breaks, the wolf limps away, leaving you with a sense of quiet accomplishment.',
+				'You step out of the cave, ready to face the day.'
+			],
+		},
+		'barricade-entrance': {
+			id: 'barricade-entrance',
+			label: 'Barricade the entrance',
+			followUp: [
+				'Chosen: barricade the entrance',
+				'You pile rocks and branches at the cave entrance, sealing yourself inside.',
+				'The growling fades as you huddle by the fire, waiting for dawn.',
+				'When morning comes, you clear the barricade and step into the frosty light, alive but shaken.'
+			],
+		},
+		'follow-stream': {
+			id: 'follow-stream',
+			label: 'Follow the stream',
+			followUp: [
+				'Chosen: follow the stream',
+				'The frozen stream glitters like a silver ribbon, leading you through the forest.',
+				'You find a small, abandoned cabin with a broken window and a sagging roof.',
+				'Inside, there’s a rusted stove and a pile of moth-eaten blankets.',
+				'Do you try to repair the cabin or move on?'
+			],
+		},
 	};
 
 	const promptChoiceMap = {
-		'What will you do?': ['trail', 'gather-wood'],
+		'What will you do?': ['trail', 'gather-wood', 'find-shelter'],
 		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking'],
 		'Will you take it out to start a fire?': ['collect-more-wood', 'start-fire'],
 		'Night chews away the remaining light. Do you keep moving or double back for warmth?': ['keep-walking-final', 'return-for-wood'],
 		'The fire steadies. Stay put or make a plan?': ['stay-with-fire', 'scout-with-torch'],
+		'Will you try to rekindle it or keep searching?': ['start-fire', 'keep-searching'],
+		'Do you enter the cave or follow the stream?': ['enter-cave', 'follow-stream'],
+		'Do you investigate the sound or barricade the entrance?': ['investigate-sound', 'barricade-entrance'],
+		'Do you help the wolf or retreat to the entrance?': ['help-wolf', 'return-for-wood'],
+		'Do you try to repair the cabin or move on?': ['stay-with-fire', 'keep-walking'],
 	};
 
 	let currentChoices = [];

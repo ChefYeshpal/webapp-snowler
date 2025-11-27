@@ -49,19 +49,11 @@
         return lines;
     }
 
-    function triggerEnvironmentalEffects(reasonKey) {
-        if (reasonKey === 'hypothermia' && window.snowAPI) {
-            window.snowAPI.setIntensity(6);
-            window.snowAPI.startAccumulation();
-        }
-    }
-
     function emitNarratedEnding(reasonKey) {
         if (!window.storyTyper) {
             return;
         }
 
-        triggerEnvironmentalEffects(reasonKey);
         const lines = buildNarration(reasonKey);
         window.storyTyper.enqueueLines(lines);
     }
