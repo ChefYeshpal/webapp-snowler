@@ -99,6 +99,8 @@
 				'A rescue chopper ghosts overhead, spotting your frantic waving.',
 				'You survive the night, teeth rattling but alive.'
 			],
+			terminal: true,
+			terminalReason: 'rescued'
 		},
 		'scout-with-torch': {
 			id: 'scout-with-torch',
@@ -109,8 +111,8 @@
 				'The wind smears smoke across your face while shadows jump like startled animals.',
 				'You stumble upon a gutted ranger station, its doorway yawning dark but promising shelter.',
 				'Inside, a dusty cot and a wheezing radio wait for patient hands.',
-				'Choice: firebrand march',
-				'You thaw out beneath a real roof as static slowly shapes into a human voice. Dawn feels possible again.'
+				'You thaw out beneath a real roof as static slowly shapes into a human voice. Dawn feels possible again.',
+				'Shouting ahead. Figures on the ridge. Approach or avoid?'
 			],
 		},
 		'follow-distant-lights': {
@@ -143,7 +145,8 @@
 				'Chosen: hunker down',
 				'You crawl behind a fallen tree, pack the windward side with snow, and light a tight, low fire.',
 				'You ration breaths and seconds; the storm spends itself over you like an angry ocean.',
-				'When the white peels back, you emerge slower but alive.'
+				'When the white peels back, you emerge slower but alive.',
+				'A row of lights winks through the storm. Follow or stay?'
 			],
 		},
 		'blind-march-storm': {
@@ -194,7 +197,8 @@
 			followUp: [
 				'Chosen: veer toward howls',
 				'Howls stitch through the pines. Curiosity outruns caution.',
-				'Shapes fan out, low and deliberate. Do you brandish fire or freeze?'
+				'Shapes fan out, low and deliberate.',
+				'Do you brandish fire or freeze?'
 			],
 		},
 		'brandish-fire': {
@@ -205,6 +209,8 @@
 				'Flame blooms wide; the pack hesitates, eyes flicking. You back away, slow and speaking.',
 				'The forest swallows the sound. You live another hour.'
 			],
+			terminal: true,
+			terminalReason: 'survived'
 		},
 		'freeze-before-pack': {
 			id: 'freeze-before-pack',
@@ -225,7 +231,8 @@
 				'You decide to leave the trail and venture deeper into the forest.',
 				'The trees grow denser, their skeletal branches clawing at the sky.',
 				'You stumble upon a rocky overhang that offers some protection from the wind.',
-				'Inside, you find traces of an old campfire. Will you try to rekindle it or keep searching?'
+				'Inside, you find traces of an old campfire.',
+				'Will you try to rekindle it or keep searching?'
 			],
 		},
 		'keep-searching': {
@@ -270,6 +277,8 @@
 				'As dawn breaks, the wolf limps away, leaving you with a sense of quiet accomplishment.',
 				'You step out of the cave, ready to face the day.'
 			],
+			terminal: true,
+			terminalReason: 'survived'
 		},
 		'barricade-entrance': {
 			id: 'barricade-entrance',
@@ -335,11 +344,11 @@
 		'The frozen stream looks fast and safe. Hurry or take care?': ['slip-on-ice', 'trail'],
 		'Food can wait, right? Rest or push on?': ['linger-too-long', 'keep-walking'],
 		'A row of lights winks through the storm. Follow or stay?': ['follow-distant-lights', 'stay-with-fire'],
-		'The air turns to whiteness. Hunker down or press forward?': ['hunker-down-storm', 'blind-march-storm'],
+		'Do you hunker down or keep moving blindly?': ['hunker-down-storm', 'blind-march-storm'],
 		'Shouting ahead. Figures on the ridge. Approach or avoid?': ['raider-encounter', 'whiteout-storm'],
 		'Do you run or try to parley?': ['run-from-raiders', 'parley-with-raiders'],
 		'Howls to the east. Investigate or steer away?': ['wolf-prowl', 'trail'],
-		'Show fire or stay still?': ['brandish-fire', 'freeze-before-pack'],
+		'Do you brandish fire or freeze?': ['brandish-fire', 'freeze-before-pack'],
 	};
 
 	let currentChoices = [];
@@ -409,11 +418,26 @@
 			window.choiceTracker.record(choice.id);
 		}
 
+		// RICK ROLL BABBYYYYYYYYY
+		if (choice.id === 'investigate-sound') {
+			disappearOption(index);
+			hidePanel();
+			try {
+				window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener');
+			} catch (err) {
+			}
+			if (window.gameOverManager && typeof window.gameOverManager.prepareEnd === 'function') {
+				window.gameOverManager.prepareEnd('RICK ROLLED');
+			} else {
+				document.dispatchEvent(new CustomEvent('game:over', { detail: { reason: 'RICK ROLLED' } }));
+			}
+			return;
+		}
+
 		disappearOption(index);
 		hidePanel();
 		storyTyper.enqueueLines(choice.followUp);
 
-	
 		if (choice.terminal) {
 			if (window.gameOverManager && typeof window.gameOverManager.prepareEnd === 'function') {
 				window.gameOverManager.prepareEnd(choice.terminalReason || null);

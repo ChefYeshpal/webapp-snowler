@@ -68,6 +68,11 @@
             detail: 'Fire gives heat and takes air. Coughs stack until the dark outweighs the orange.',
             extra: 'Soot settles like snow inside your lungs.',
         },
+        survived: {
+            title: 'GAME OVER — Survived',
+            detail: 'You scraped through the night with grit and luck instead of rescue.',
+            extra: 'Tomorrow waits for your next decision.',
+        },
         rescued: {
             title: 'GAME OVER — Rescued',
             detail: 'You are found—fingers thawed, breath steadied, name spoken back to you.',
