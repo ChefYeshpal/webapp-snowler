@@ -47,7 +47,8 @@
 				'You lower your head and push onward, the trail a thread of frost threading between pines.',
 				'Wind gnaws at your exposed cheeks, stealing warmth in greedy bites.',
 				'Your breath hangs in the darkening pines like smoke from a dying candle.',
-				'Night chews away the remaining light. Do you keep moving or double back for warmth?'
+				'Evening smolders through the clouds, painting the snow in bruised amber.',
+				'Do you keep moving or double back for warmth?'
 			],
 		},
 		'keep-walking-final': {
@@ -55,6 +56,7 @@
 			label: 'Keep moving',
 			followUp: [
 				'Chosen: keep moving',
+				'Night chews away the remaining light.',
 				'You lean into the gale, marching until your legs feel hollow and brittle.',
 				'Needles of ice chew through your trousers, skin burning before it fades to nothing.',
 				'Vision tunnels; the drift ahead looks like a soft bed inviting you to rest.',
@@ -322,7 +324,7 @@
 		'What will you do?': ['trail', 'gather-wood', 'find-shelter'],
 		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking'],
 		'Will you take it out to start a fire?': ['collect-more-wood', 'start-fire'],
-		'Night chews away the remaining light. Do you keep moving or double back for warmth?': ['keep-walking-final', 'return-for-wood'],
+		'Do you keep moving or double back for warmth?': ['keep-walking-final', 'return-for-wood'],
 		'The fire steadies. Stay put or make a plan?': ['stay-with-fire', 'scout-with-torch'],
 		'Will you try to rekindle it or keep searching?': ['start-fire', 'keep-searching'],
 		'Do you enter the cave or follow the stream?': ['enter-cave', 'follow-stream'],

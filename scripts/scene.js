@@ -122,8 +122,8 @@
 					if (this.caret.isConnected) {
 						this.caret.remove();
 					}
-					// notify that the current typing session / queued sequence finished
 					document.dispatchEvent(new CustomEvent('story:sequence-complete'));
+					document.dispatchEvent(new CustomEvent('story:auto-scroll'));
 					return;
 				}
 
@@ -185,6 +185,7 @@
 			}
 
 			this.scheduleNext(this.linePause);
+			document.dispatchEvent(new CustomEvent('story:auto-scroll'));
 		}
 	}
 
