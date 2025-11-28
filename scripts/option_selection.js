@@ -266,19 +266,8 @@
 				'Your torchlight reveals a wounded wolf, its eyes glinting with fear and pain.',
 				'Do you help the wolf or retreat to the entrance?'
 			],
-		},
-		'help-wolf': {
-			id: 'help-wolf',
-			label: 'Help the wolf',
-			followUp: [
-				'Chosen: help the wolf',
-				'You approach slowly, offering soothing words as you tend to its wound.',
-				'The wolf watches you warily but doesn’t resist.',
-				'As dawn breaks, the wolf limps away, leaving you with a sense of quiet accomplishment.',
-				'You step out of the cave, ready to face the day.'
-			],
 			terminal: true,
-			terminalReason: 'survived'
+			terminalReason: 'rickrolled'
 		},
 		'barricade-entrance': {
 			id: 'barricade-entrance',
@@ -310,8 +299,7 @@
 			followUp: [
 				'Chosen: hurry along the ice',
 				'You quicken your pace on the glassy stream-bed, breath sharp and eager.',
-				'A soundless misstep, then the world tilts—your leg buckles with a brittle crack.',
-				'Cold patience settles in while the sky turns indifferent.'
+				'A soundless misstep, then the world tilts—your leg buckles with a brittle crack, your neck breaks.'
 			],
 			terminal: true,
 			terminalReason: 'injury'
