@@ -83,6 +83,51 @@
             detail: 'Never gonna give you up, never gonna let you down...',
             extra: 'You got Rick Rolled! Better luck next time.',
         },
+        yeti: {
+            title: 'GAME OVER — Transcendence',
+            detail: 'You have become legend. Civilization is a distant memory, replaced by snow and instinct.',
+            extra: 'Hikers will tell stories about you for generations. You are free.',
+        },
+        meme: {
+            title: 'GAME OVER — Viral Fame',
+            detail: 'Your interpretive dance has been viewed 47 million times. You are immortal on the internet.',
+            extra: 'The rangers rescued you, but your dignity remains lost in the algorithm.',
+        },
+        steve_revenge: {
+            title: 'GAME OVER — Betrayed by Steve',
+            detail: 'You abandoned your only friend in this frozen wasteland. Steve did not forget.',
+            extra: 'Nature has a long memory for those who build snowmen and walk away.',
+        },
+        bear_combat: {
+            title: 'GAME OVER — Outmatched',
+            detail: 'You challenged a 600-pound apex predator to single combat. This was always going to end one way.',
+            extra: 'The bear didn\'t even seem impressed. Just disappointed.',
+        },
+        squirrel_failure: {
+            title: 'GAME OVER — Diplomatic Incident',
+            detail: 'Your negotiation skills proved ineffective against woodland rodents.',
+            extra: 'The squirrels form a union and spread word of your failures across the forest.',
+        },
+        brain_freeze: {
+            title: 'GAME OVER — Brain Freeze',
+            detail: 'Eating snow seemed logical at the time. Your body temperature disagrees violently.',
+            extra: 'The survival manual specifically warned against this. You should have read it.',
+        },
+        bestseller: {
+            title: 'GAME OVER — Posthumous Success',
+            detail: 'Your memoir becomes a #1 New York Times Bestseller. You won\'t be around to enjoy the royalties.',
+            extra: 'Chapter 3 remained forever unfinished, adding to the mystique.',
+        },
+        mom_rescue: {
+            title: 'GAME OVER — Maternal Intervention',
+            detail: 'Your mother coordinated a full rescue operation while lecturing you about proper winter gear.',
+            extra: 'You\'re alive, but you\'ll never hear the end of this at family gatherings.',
+        },
+        alien_rescue: {
+            title: 'GAME OVER — Close Encounter',
+            detail: 'The geometric fire pattern worked! Unfortunately, it attracted a helicopter instead of aliens.',
+            extra: 'The pilot thinks you might need a psychiatric evaluation. You\'re rescued anyway.',
+        },
         default: {
             title: 'GAME OVER',
             detail: 'Your time in the pines ends here.',
