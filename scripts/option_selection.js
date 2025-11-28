@@ -425,11 +425,12 @@
 			try {
 				window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener');
 			} catch (err) {
+				console.error('Failed to open Rick Roll link:', err);
 			}
 			if (window.gameOverManager && typeof window.gameOverManager.prepareEnd === 'function') {
-				window.gameOverManager.prepareEnd('RICK ROLLED');
+				window.gameOverManager.prepareEnd('rickrolled');
 			} else {
-				document.dispatchEvent(new CustomEvent('game:over', { detail: { reason: 'RICK ROLLED' } }));
+				document.dispatchEvent(new CustomEvent('game:over', { detail: { reason: 'rickrolled' } }));
 			}
 			return;
 		}

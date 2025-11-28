@@ -78,6 +78,11 @@
             detail: 'You are found—fingers thawed, breath steadied, name spoken back to you.',
             extra: 'Warm lights and careful hands guide you home. Well done holding on.',
         },
+        rickrolled: {
+            title: 'GAME OVER — Rick Rolled',
+            detail: 'Never gonna give you up, never gonna let you down...',
+            extra: 'You got Rick Rolled! Better luck next time.',
+        },
         default: {
             title: 'GAME OVER',
             detail: 'Your time in the pines ends here.',
