@@ -362,10 +362,7 @@
 			id: 'investigate-sound',
 			label: 'Investigate the sound',
 			followUp: [
-				'Chosen: investigate the sound',
-				'You cautiously move deeper into the cave, the growl growing louder.',
-				'Your torchlight reveals a wounded wolf, its eyes glinting with fear and pain.',
-				'Do you help the wolf or retreat to the entrance?'
+				'Chosen: investigate the sound'
 			],
 			terminal: true,
 			terminalReason: 'rickrolled'
@@ -412,7 +409,7 @@
 				'Chosen: ignore food and rest',
 				'You ration nothing and push through the ache, promising a later reward.',
 				'The promise runs out before the day does; your steps blur, thoughts thin.',
-				'You sit down "just a minute." The forest agrees.'
+				'You sit down "just a minute."'
 			],
 			terminal: true,
 			terminalReason: 'starvation'
@@ -1011,6 +1008,10 @@
 		const matchingText = rawText.trim();
 		const choiceIds = promptChoiceMap[matchingText];
 
+		// YESSSSSSS BECAUSE OFC I CAN BREAK SOMETHIG THAT WAS PERFECTLY WORKING HAHAHA
+		console.log('Line completed:', matchingText);
+		console.log('Found choice IDs:', choiceIds);
+
 		if (!choiceIds) {
 			return;
 		}
@@ -1018,6 +1019,8 @@
 		const choices = choiceIds
 			.map((choiceId) => choiceCatalog[choiceId])
 			.filter(Boolean);
+// DEBUGGING LOGorathmsssss
+		console.log('Mapped choices:', choices);
 
 		if (choices.length > 0) {
 			showChoices(choices);
