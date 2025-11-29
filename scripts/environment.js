@@ -7,10 +7,12 @@
 
 	const NIGHT_CLASS = 'mode-night';
 	const EVENING_CLASS = 'mode-evening';
+	const CAVE_CLASS = 'mode-cave';
 	const DAY_TERMS = ['dawn', 'morning', 'sunrise', 'daybreak', 'daylight', 'sun is', 'sun climbs'];
 	const storyContainer = document.getElementById('story-text');
 	const scrollRoot = document.scrollingElement || document.documentElement || document.body;
 	let pendingScroll = null;
+	let caveActive = false;
 
 	const starLayer = document.createElement('div');
 	starLayer.className = 'night-stars';
@@ -22,17 +24,34 @@
 	}
 
 	const clearModes = () => {
-		body.classList.remove(EVENING_CLASS, NIGHT_CLASS);
+		body.classList.remove(EVENING_CLASS, NIGHT_CLASS, CAVE_CLASS);
+		caveActive = false;
+	};
+
+	const removeCave = () => {
+		if (!caveActive) {
+			return;
+		}
+		caveActive = false;
+		body.classList.remove(CAVE_CLASS);
 	};
 
 	const applyEvening = () => {
+		removeCave();
 		body.classList.add(EVENING_CLASS);
 		body.classList.remove(NIGHT_CLASS);
 	};
 
 	const applyNight = () => {
+		removeCave();
 		body.classList.add(NIGHT_CLASS);
 		body.classList.remove(EVENING_CLASS);
+	};
+
+	const applyCave = () => {
+		body.classList.add(CAVE_CLASS);
+		body.classList.remove(EVENING_CLASS, NIGHT_CLASS);
+		caveActive = true;
 	};
 
 	clearModes();
@@ -43,7 +62,27 @@
 			return;
 		}
 
+		if (text.includes('chosen: enter the cave')) {
+			applyCave();
+			return;
+		}
+
+		if (caveActive && (
+			text.includes('burst into the ranger station') ||
+			text.includes('slam the shelf back in place')
+		)) {
+			removeCave();
+		}
+
+		if (text.includes('chosen: enter the cave') || text.includes('chosen: explore tunnel')) {
+			applyCave();
+			return;
+		}
+
 		if (DAY_TERMS.some((term) => text.includes(term))) {
+			if (caveActive) {
+				return;
+			}
 			clearModes();
 		}
 

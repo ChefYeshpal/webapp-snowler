@@ -848,6 +848,7 @@
 		'Which way do you go?': ['explore-ranger-station', 'investigate-cliff-markings'],
 		'Use the radio to call for help or explore the forbidden tunnel?': ['use-radio', 'explore-forbidden-tunnel'],
 		'Exit fast or hide behind the cage?': ['sprint-from-tunnel', 'hide-behind-cage'],
+		'Behind you, something large breathes. Exit fast or hide behind the cage?': ['sprint-from-tunnel', 'hide-behind-cage'],
 		'Trust the rope or search for safer descent?': ['trust-cliff-rope', 'search-safer-path'],
 	};
 

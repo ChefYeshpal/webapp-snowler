@@ -71,6 +71,12 @@ body.mode-night {
 	--accent-color: #8ec5ff;
 }
 
+body.mode-cave {
+	--background: #000000;
+	--text-color: #f2f2f2;
+	--accent-color: #7ab8ff;
+}
+
 .story-title {
 	margin: 0;
 	font-size: clamp(2.2rem, 6vw, 4rem);
@@ -91,6 +97,11 @@ body.mode-evening .story-title {
 body.mode-night .story-title {
 	color: #d4eaff;
 	text-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+}
+
+body.mode-cave .story-title {
+	color: #9fc8ff;
+	text-shadow: 0 20px 42px rgba(0, 0, 0, 0.65);
 }
 
 .story-text {
@@ -137,6 +148,11 @@ body.mode-night .choice-panel {
 	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
 }
 
+body.mode-cave .choice-panel {
+	background: rgba(0, 0, 0, 0.72);
+	box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
 body.mode-evening .choice-panel {
 	background: rgba(255, 247, 236, 0.24);
 }
@@ -168,10 +184,20 @@ body.mode-night .choice-option {
 	color: #b6d6ff;
 }
 
+body.mode-cave .choice-option {
+	color: #9fc8ff;
+}
+
 body.mode-night .choice-option:hover,
 body.mode-night .choice-option--active {
 	color: #deecff;
 	background: rgba(255, 255, 255, 0.08);
+}
+
+body.mode-cave .choice-option:hover,
+body.mode-cave .choice-option--active {
+	color: #d5e7ff;
+	background: rgba(255, 255, 255, 0.12);
 }
 
 body.mode-evening .choice-option {
