@@ -149,7 +149,12 @@
         }
         lines.push(
             { text: `Path taken: ${pathString}`, className: 'story-line--gameover' },
-            { text: 'Reload the page to brave the storm again.', className: 'story-line--gameover' }
+            { text: 'Reload the page to brave the storm again.', className: 'story-line--gameover' },
+            {
+                text: 'View the <a href="https://github.com/ChefYeshpal/webapp-snowler/" target="_blank" rel="noopener" class="story-link story-link--github">GitHub repository</a>.',
+                className: 'story-line--gameover',
+                html: true
+            }
         );
         return lines;
     }

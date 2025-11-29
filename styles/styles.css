@@ -312,7 +312,7 @@ body.mode-night .night-stars {
 	filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
 }
 
-/* drift that grows from the bottom to simulate accumulation */
+
 .snow-drift {
 	position: fixed;
 	left: 0;
@@ -340,6 +340,21 @@ body.mode-night .night-stars {
 	color: #b11226;
 	font-weight: 700;
 	letter-spacing: 0.06em;
+}
+
+.story-link {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.story-link--github {
+	color: #79bd9d;
+}
+
+.story-link--github:hover,
+.story-link--github:focus {
+	color: #8aa598;
+	text-decoration: underline;
 }
 
 @keyframes caret-blink {

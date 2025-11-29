@@ -55,10 +55,14 @@
 			const normalised = (lines || [])
 				.map((entry) => {
 					if (typeof entry === 'string') {
-						return { text: entry };
+						return { text: entry, className: '', html: false };
 					}
 					if (entry && typeof entry.text === 'string') {
-						return { text: entry.text, className: entry.className ?? '' };
+						return {
+							text: entry.text,
+							className: entry.className ?? '',
+							html: Boolean(entry.html || entry.isHtml),
+						};
 					}
 					return null;
 				})
@@ -67,8 +71,9 @@
 					const trimmed = entry.text.trim();
 					return {
 						text: trimmed,
-						words: trimmed.split(/\s+/),
+						words: entry.html ? null : trimmed.split(/\s+/),
 						className: entry.className ?? '',
+						html: entry.html,
 					};
 				})
 				.filter((entry) => entry.text.length > 0);
@@ -137,6 +142,22 @@
 				this.totalLines += 1;
 				this.container.insertBefore(this.activeParagraph, this.caret);
 				this.activeWordBlock = null;
+			}
+
+			if (this.currentLine.html) {
+				this.activeParagraph.innerHTML = this.currentLine.text;
+				const completedHtmlLine = this.currentLine;
+				this.currentLine = null;
+				this.activeParagraph = null;
+				this.activeWordBlock = null;
+				this.scheduleNext(this.linePause);
+				document.dispatchEvent(new CustomEvent('story:auto-scroll'));
+				document.dispatchEvent(
+					new CustomEvent('story:line-complete', {
+						detail: { text: completedHtmlLine.text, className: completedHtmlLine.className ?? '' },
+					})
+				);
+				return;
 			}
 
 			const lineWords = this.currentLine.words;
