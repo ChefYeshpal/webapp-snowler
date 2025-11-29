@@ -260,26 +260,30 @@
 		}
 		body.classList.remove('prestart-ready');
 
-		const shellRect = titleShell.getBoundingClientRect();
 		const titleRect = titleElement.getBoundingClientRect();
-
-		const shiftX = window.innerWidth / 2 - (shellRect.left + shellRect.width / 2);
-		const shiftY = window.innerHeight / 2 - (shellRect.top + shellRect.height / 2);
-
-		titleShell.style.setProperty('--title-shift-x', `${shiftX}px`);
-		titleShell.style.setProperty('--title-shift-y', `${shiftY}px`);
-
 		const widthScale = titleRect.width ? (window.innerWidth / titleRect.width) * 0.8 : 1.75;
 		const heightScale = titleRect.height ? (window.innerHeight / titleRect.height) * 0.6 : 1.75;
 		const computedScale = Math.max(1.6, Math.min(widthScale, heightScale, 5));
-
 		titleElement.style.setProperty('--title-scale', computedScale.toFixed(3));
 
+		// RAHHH automatic measuring so that heading is ALWAYS centered RAHHH
+		body.classList.add('prestart');
+		body.classList.remove('prestart-exit');
+		titleShell.style.setProperty('--title-shift-x', '0px');
+		titleShell.style.setProperty('--title-shift-y', '0px');
+		const centeredRect = titleShell.getBoundingClientRect();
+		const centeredShiftX = window.innerWidth / 2 - (centeredRect.left + centeredRect.width / 2);
+		const centeredShiftY = window.innerHeight / 2 - (centeredRect.top + centeredRect.height / 2);
+		titleShell.style.setProperty('--title-shift-x', `${centeredShiftX}px`);
+		titleShell.style.setProperty('--title-shift-y', `${centeredShiftY}px`);
+
+		if (!hadPrestart) {
+			body.classList.remove('prestart');
+		}
+		if (hadPrestartExit && hadPrestart) {
+			body.classList.add('prestart-exit');
+		}
 		if (hadPrestart) {
-			body.classList.add('prestart');
-			if (hadPrestartExit) {
-				body.classList.add('prestart-exit');
-			}
 			window.requestAnimationFrame(() => {
 				if (body && body.classList.contains('prestart')) {
 					body.classList.add('prestart-ready');
