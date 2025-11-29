@@ -13,7 +13,6 @@ The main premise of this game is that the "you" wake up buried in snow, wrigglin
 - [x] Text should type out to introduce what's happening
     - [x] Explain the scenario
         - *You wake up, your body covered in snow, as you somehow wriggle out of it's icy depths. Good thing you're wearing a thick jacket, otherwise hypothermia would have set in... Not like it can't right now, but you should retain body heat somehow...*
-- [ ] Game over screen
-    - [ ] Snow should fill out slowly, covering the entire screen
+- [x] Game over screen
     - [x] Tell the path taken
-    - [ ] Gib link of [this github repo](https://github.com/ChefYeshpal/webapp-snowler/)
+    - [x] Gib link of [this github repo](https://github.com/ChefYeshpal/webapp-snowler/)
