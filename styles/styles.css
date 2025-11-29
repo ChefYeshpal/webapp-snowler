@@ -7,6 +7,9 @@
 	--panel-border: rgba(12, 32, 47, 0.08);
 	--text-color: #0b1c29;
 	--accent-color: #1b4c6b;
+	--scrollbar-track: #f9f9f9;
+	--scrollbar-thumb: #d1e7f0;
+	--scrollbar-thumb-hover: #b0d4e3;
 }
 
 * {
@@ -14,31 +17,31 @@
 }
 
 ::-webkit-scrollbar {
-    width: 8px; 
-    background-color: #f9f9f9;
+	width: 8px;
+	background-color: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #d1e7f0; 
-    border-radius: 10px; 
-    border: 2px solid #f9f9f9;
+	background-color: var(--scrollbar-thumb);
+	border-radius: 10px;
+	border: 2px solid var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #b0d4e3;
+	background-color: var(--scrollbar-thumb-hover);
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #f9f9f9;
+	background-color: var(--scrollbar-track);
 }
 
 /* Firefox */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: #d1e7f0 #f9f9f9;
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-/* Internet Explorer/Edge (fallback) */
+/* Internet Explorer/Edge (fallback) who even uses internet explorer now dude...*/
 body {
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
@@ -63,18 +66,78 @@ body.mode-evening {
 	--background: #f3ceb0;
 	--text-color: #2c1a12;
 	--accent-color: #a94b20;
+	--scrollbar-track: #fef1e5;
+	--scrollbar-thumb: #f0bd96;
+	--scrollbar-thumb-hover: #d97c3e;
+}
+
+body.mode-evening ::-webkit-scrollbar {
+	background-color: var(--scrollbar-track);
+}
+
+body.mode-evening ::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb);
+	border-color: var(--scrollbar-track);
+}
+
+body.mode-evening ::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar-thumb-hover);
+}
+
+body.mode-evening * {
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 body.mode-night {
 	--background: #061221;
 	--text-color: #e6f1ff;
 	--accent-color: #8ec5ff;
+	--scrollbar-track: #101f32;
+	--scrollbar-thumb: #214b75;
+	--scrollbar-thumb-hover: #3a6da3;
+}
+
+body.mode-night ::-webkit-scrollbar {
+	background-color: var(--scrollbar-track);
+}
+
+body.mode-night ::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb);
+	border-color: var(--scrollbar-track);
+}
+
+body.mode-night ::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar-thumb-hover);
+}
+
+body.mode-night * {
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 body.mode-cave {
 	--background: #000000;
 	--text-color: #f2f2f2;
 	--accent-color: #7ab8ff;
+	--scrollbar-track: #070707;
+	--scrollbar-thumb: #1f3857;
+	--scrollbar-thumb-hover: #2c5584;
+}
+
+body.mode-cave ::-webkit-scrollbar {
+	background-color: var(--scrollbar-track);
+}
+
+body.mode-cave ::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb);
+	border-color: var(--scrollbar-track);
+}
+
+body.mode-cave ::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar-thumb-hover);
+}
+
+body.mode-cave * {
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 .story-title {
