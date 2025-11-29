@@ -166,6 +166,7 @@
 
         const lines = buildNarration(reasonKey);
         window.storyTyper.enqueueLines(lines);
+        window.storyTyper.start();
     }
 
     function prepareEnd(reason) {

@@ -817,8 +817,8 @@
 	};
 
 	const promptChoiceMap = {
-		'What will you do?': ['trail', 'gather-wood', 'find-shelter', 'eat-snow', 'build-snowman'],
-		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking', 'negotiate-squirrels'],
+		'What will you do?': ['trail', 'gather-wood', 'find-shelter'],
+		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking', 'build-snowman', 'eat-snow', 'negotiate-squirrels'],
 		'Will you take it out to start a fire?': ['collect-more-wood', 'start-fire', 'interpretive-dance'],
 		'Do you keep moving, double back for warmth, press into the storm, or embrace the cold entirely?': ['keep-walking-final', 'return-for-wood', 'whiteout-storm', 'become-yeti'],
 		'The fire steadies. Stay put or make a plan?': ['stay-with-fire', 'scout-with-torch', 'summon-aliens'],
