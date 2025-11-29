@@ -48,7 +48,7 @@
 				'Wind gnaws at your exposed cheeks, stealing warmth in greedy bites.',
 				'Your breath hangs in the darkening pines like smoke from a dying candle.',
 				'Evening smolders through the clouds, painting the snow in bruised amber.',
-				'Do you keep moving or double back for warmth?'
+				'Do you keep moving, double back for warmth, press into the storm, or embrace the cold entirely?'
 			],
 		},
 		'keep-walking-final': {
@@ -820,7 +820,7 @@
 		'What will you do?': ['trail', 'gather-wood', 'find-shelter', 'eat-snow', 'build-snowman'],
 		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking', 'negotiate-squirrels'],
 		'Will you take it out to start a fire?': ['collect-more-wood', 'start-fire', 'interpretive-dance'],
-		'Do you keep moving or double back for warmth?': ['keep-walking-final', 'return-for-wood', 'become-yeti'],
+		'Do you keep moving, double back for warmth, press into the storm, or embrace the cold entirely?': ['keep-walking-final', 'return-for-wood', 'whiteout-storm', 'become-yeti'],
 		'The fire steadies. Stay put or make a plan?': ['stay-with-fire', 'scout-with-torch', 'summon-aliens'],
 		'Will you try to rekindle it or keep searching?': ['start-fire', 'keep-searching', 'scout-frozen-lake'],
 		'Do you enter the cave or follow the stream?': ['enter-cave', 'follow-stream', 'challenge-bear'],
