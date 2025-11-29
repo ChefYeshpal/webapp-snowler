@@ -919,7 +919,6 @@
 			window.choiceTracker.record(choice.id);
 		}
 
-		// RICK ROLL BABBYYYYYYYYY
 		if (choice.id === 'investigate-sound') {
 			disappearOption(index);
 			hidePanel();
@@ -989,7 +988,6 @@
 		// delay for allowin the browser to register the panel visibility toggle before animating
 		requestAnimationFrame(() => {
 			panel.classList.add('choice-panel--visible');
-			// wata shi ka it sho, taba ita gaaa
 			requestAnimationFrame(() => {
 				document.dispatchEvent(new CustomEvent('story:auto-scroll'));
 			});
