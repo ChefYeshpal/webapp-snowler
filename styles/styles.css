@@ -310,7 +310,7 @@ body.mode-evening .choice-option--active {
     transform: scale(0.9);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
+/* wtf am i using caret for... */
 .caret {
 	display: inline-block;
 	width: 0.7ch;
@@ -373,6 +373,18 @@ body.mode-night .night-stars {
 	border-radius: 0;
 	will-change: transform;
 	filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+}
+
+.ember-layer {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.ember {
+	position: absolute;
+	will-change: transform, opacity;
 }
 
 

@@ -853,25 +853,43 @@
 	};
 
 	const weatherConfigByChoice = {
-		default: { intensity: 1, wind: 0 },
-		'whiteout-storm': { intensity: 3.8, wind: 0.12 },
-		'hunker-down-storm': { intensity: 3.2, wind: 0.06 },
-		'blind-march-storm': { intensity: 4.6, wind: 0.14 },
-		'follow-distant-lights': { intensity: 2.1, wind: 0.05 },
-		'stay-with-fire': { intensity: 0.9, wind: 0 },
+		default: { intensity: 1, wind: 0, embers: false },
+		'whiteout-storm': { intensity: 3.8, wind: 0.12, embers: false },
+		'hunker-down-storm': { intensity: 3.2, wind: 0.06, embers: true },
+		'blind-march-storm': { intensity: 4.6, wind: 0.14, embers: false },
+		'follow-distant-lights': { intensity: 2.1, wind: 0.05, embers: false },
+		'stay-with-fire': { intensity: 0.9, wind: 0, embers: true },
+		'start-fire': { intensity: 1, wind: 0, embers: true },
+		'scout-with-torch': { intensity: 1, wind: 0, embers: true },
+		'brandish-fire': { intensity: 1, wind: 0, embers: true },
+		'explore-forbidden-tunnel': { intensity: 1, wind: 0, embers: true },
+		'investigate-cliff-markings': { intensity: 1, wind: 0, embers: true },
+		'trust-cliff-rope': { intensity: 1, wind: 0, embers: true },
+		'enter-cave': { intensity: 1, wind: 0, embers: true },
+		'barricade-entrance': { intensity: 1, wind: 0, embers: true },
 	};
 
 	const applyWeatherFor = (choiceId) => {
 		const snowAPI = window.snowAPI;
-		if (!snowAPI) {
-			return;
-		}
+		const emberAPI = window.emberAPI;
+		
 		const config = weatherConfigByChoice[choiceId] || weatherConfigByChoice.default;
-		if (typeof snowAPI.setIntensity === 'function' && typeof config.intensity === 'number') {
-			snowAPI.setIntensity(config.intensity);
+		
+		if (snowAPI) {
+			if (typeof snowAPI.setIntensity === 'function' && typeof config.intensity === 'number') {
+				snowAPI.setIntensity(config.intensity);
+			}
+			if (typeof snowAPI.setWind === 'function' && typeof config.wind === 'number') {
+				snowAPI.setWind(config.wind);
+			}
 		}
-		if (typeof snowAPI.setWind === 'function' && typeof config.wind === 'number') {
-			snowAPI.setWind(config.wind);
+			// lmnao
+		if (emberAPI) {
+			if (config.embers) {
+				emberAPI.startEmbers();
+			} else {
+				emberAPI.stopEmbers();
+			}
 		}
 	};
 
