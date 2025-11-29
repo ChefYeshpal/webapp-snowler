@@ -59,7 +59,39 @@ body {
 	font-family: 'Space Mono', monospace;
 	letter-spacing: 0.02em;
 	overflow-x: hidden;
-	transition: background 700ms ease, color 600ms ease;
+	transition: background 700ms ease, color 600ms ease, padding 420ms ease, gap 420ms ease;
+}
+
+body.prestart {
+	overflow: hidden;
+}
+
+body.prestart .title-block {
+	align-items: center;
+	text-align: center;
+}
+
+body.prestart.prestart-exit .title-block {
+	align-items: flex-start;
+	text-align: left;
+}
+
+body.prestart .story-title {
+	text-align: center;
+}
+
+body.prestart .story-text,
+body.prestart .choice-panel {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: translateY(28px);
+}
+
+body.game-starting .story-text,
+body.game-starting .choice-panel {
+	opacity: 0;
+	pointer-events: none;
 }
 
 body.mode-evening {
@@ -123,6 +155,61 @@ body.mode-cave {
 	--scrollbar-thumb-hover: #2c5584;
 }
 
+.title-block {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: clamp(10px, 1.8vh, 20px);
+	position: relative;
+	z-index: 3;
+}
+
+.title-shell {
+	display: inline-flex;
+	position: relative;
+	transform: translate3d(0, 0, 0);
+	transition: transform 680ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+body.prestart:not(.prestart-ready):not(.prestart-exit) .title-shell,
+body.prestart:not(.prestart-ready):not(.prestart-exit) .story-title {
+	transition: none;
+}
+
+body.prestart .title-shell {
+	transform: translate3d(var(--title-shift-x, 0), var(--title-shift-y, 0), 0);
+}
+
+body.prestart.prestart-exit .title-shell {
+	transform: translate3d(0, 0, 0);
+}
+
+.story-subtitle {
+	margin: 0;
+	font-size: clamp(0.95rem, 2.3vw, 1.45rem);
+	letter-spacing: clamp(0.32em, 1.5vw, 0.48em);
+	text-transform: uppercase;
+	color: var(--accent-color);
+	opacity: 0;
+	transform: translateY(8px);
+	max-height: 0;
+	overflow: hidden;
+	pointer-events: none;
+	transition: opacity 320ms ease, transform 320ms ease, max-height 320ms ease;
+}
+
+body.prestart .story-subtitle {
+	opacity: 0.82;
+	transform: translateY(0);
+	max-height: 120px;
+}
+
+body.prestart.prestart-exit .story-subtitle {
+	opacity: 0;
+	max-height: 0;
+	transform: translateY(-18px);
+}
+
 body.mode-cave ::-webkit-scrollbar {
 	background-color: var(--scrollbar-track);
 }
@@ -150,10 +237,35 @@ body.mode-cave * {
 	text-shadow: 0 10px 24px rgba(31, 63, 87, 0.18);
 	position: relative;
 	z-index: 3;
+	transform-origin: center;
+	transform: translate3d(0, 0, 0);
+	transition: transform 680ms cubic-bezier(0.19, 1, 0.22, 1), letter-spacing 680ms cubic-bezier(0.19, 1, 0.22, 1), text-shadow 680ms cubic-bezier(0.19, 1, 0.22, 1);
+	will-change: transform;
+}
+
+body.prestart .story-title {
+	transform: scale(var(--title-scale, 1.75));
+	letter-spacing: clamp(0.12em, 0.8vw, 0.24em);
+	text-shadow: 0 18px 40px rgba(31, 63, 87, 0.26);
+}
+
+body.prestart.prestart-exit .story-title {
+	transform: scale(1);
+	letter-spacing: 0.08em;
+	text-shadow: 0 10px 24px rgba(31, 63, 87, 0.18);
+	text-align: left;
 }
 
 body.mode-evening .story-title {
 	color: #c15e25;
+	text-shadow: 0 10px 24px rgba(154, 66, 20, 0.25);
+}
+
+body.mode-evening.prestart .story-title {
+	text-shadow: 0 20px 44px rgba(154, 66, 20, 0.32);
+}
+
+body.mode-evening.prestart.prestart-exit .story-title {
 	text-shadow: 0 10px 24px rgba(154, 66, 20, 0.25);
 }
 
@@ -162,8 +274,24 @@ body.mode-night .story-title {
 	text-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
 }
 
+body.mode-night.prestart .story-title {
+	text-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+body.mode-night.prestart.prestart-exit .story-title {
+	text-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+}
+
 body.mode-cave .story-title {
 	color: #9fc8ff;
+	text-shadow: 0 20px 42px rgba(0, 0, 0, 0.65);
+}
+
+body.mode-cave.prestart .story-title {
+	text-shadow: 0 32px 72px rgba(0, 0, 0, 0.78);
+}
+
+body.mode-cave.prestart.prestart-exit .story-title {
 	text-shadow: 0 20px 42px rgba(0, 0, 0, 0.65);
 }
 
@@ -173,6 +301,9 @@ body.mode-cave .story-title {
 	line-height: 1.65;
 	position: relative;
 	z-index: 3;
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 420ms ease, transform 420ms ease;
 }
 
 .story-text p {
@@ -310,7 +441,7 @@ body.mode-evening .choice-option--active {
     transform: scale(0.9);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
-/* wtf am i using caret for... */
+
 .caret {
 	display: inline-block;
 	width: 0.7ch;

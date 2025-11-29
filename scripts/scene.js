@@ -6,6 +6,11 @@
 		return;
 	}
 
+	const body = document.body;
+	const titleShell = document.querySelector('.title-shell');
+	const titleElement = document.querySelector('.story-title');
+	const subtitleElement = document.querySelector('.story-subtitle');
+
 	class StoryTyper {
 		constructor(container, options = {}) {
 			this.container = container;
@@ -16,6 +21,7 @@
 			this.baseWordPause = this.wordPause;
 			this.baseLinePause = this.linePause;
 			this.fastMode = false;
+			this.autoStart = options.autoStart ?? true;
 
 			this.lineQueue = [];
 			this.currentLine = null;
@@ -83,10 +89,15 @@
 			}
 
 			this.lineQueue.push(...normalised);
-			this.ensureCaret();
 
-			if (!this.isTyping) {
+			if (this.isTyping) {
+				this.ensureCaret();
+				return;
+			}
+
+			if (this.autoStart) {
 				this.isTyping = true;
+				this.ensureCaret();
 				this.scheduleNext(0);
 			}
 		}
@@ -215,12 +226,217 @@
 		typingSpeed: 48,
 		wordPause: 160,
 		linePause: 950,
+		autoStart: false,
 	});
 
 	window.storyTyper = storyTyper;
 
 	const choicePanel = document.getElementById('choice-panel');
 	let skipActive = false;
+
+	// can you PLEASE work 
+	// I mean, it's not that hard man seriously... you just have to break your back or something?
+	const INTRO_TRANSITION_MS = 720;
+	const useIntroScreen = Boolean(body && titleShell && titleElement);
+	let introActive = false;
+	let introComplete = false;
+	let introKeydownHandler = null;
+	let introPointerHandler = null;
+	let introResizeHandler = null;
+	let introLoadHandler = null;
+
+	const applyIntroMetrics = () => {
+		if (!useIntroScreen || !body) {
+			return;
+		}
+
+		const hadPrestart = body.classList.contains('prestart');
+		const hadPrestartExit = body.classList.contains('prestart-exit');
+		if (hadPrestartExit) {
+			body.classList.remove('prestart-exit');
+		}
+		if (hadPrestart) {
+			body.classList.remove('prestart');
+		}
+		body.classList.remove('prestart-ready');
+
+		const shellRect = titleShell.getBoundingClientRect();
+		const titleRect = titleElement.getBoundingClientRect();
+
+		const shiftX = window.innerWidth / 2 - (shellRect.left + shellRect.width / 2);
+		const shiftY = window.innerHeight / 2 - (shellRect.top + shellRect.height / 2);
+
+		titleShell.style.setProperty('--title-shift-x', `${shiftX}px`);
+		titleShell.style.setProperty('--title-shift-y', `${shiftY}px`);
+
+		const widthScale = titleRect.width ? (window.innerWidth / titleRect.width) * 0.8 : 1.75;
+		const heightScale = titleRect.height ? (window.innerHeight / titleRect.height) * 0.6 : 1.75;
+		const computedScale = Math.max(1.6, Math.min(widthScale, heightScale, 5));
+
+		titleElement.style.setProperty('--title-scale', computedScale.toFixed(3));
+
+		if (hadPrestart) {
+			body.classList.add('prestart');
+			if (hadPrestartExit) {
+				body.classList.add('prestart-exit');
+			}
+			window.requestAnimationFrame(() => {
+				if (body && body.classList.contains('prestart')) {
+					body.classList.add('prestart-ready');
+				}
+			});
+		}
+	};
+
+	const tearDownIntroListeners = () => {
+		if (introKeydownHandler) {
+			document.removeEventListener('keydown', introKeydownHandler, true);
+			introKeydownHandler = null;
+		}
+		if (introPointerHandler) {
+			document.removeEventListener('pointerdown', introPointerHandler, true);
+			introPointerHandler = null;
+		}
+		if (introResizeHandler) {
+			window.removeEventListener('resize', introResizeHandler);
+			window.removeEventListener('orientationchange', introResizeHandler);
+			introResizeHandler = null;
+		}
+		if (introLoadHandler) {
+			window.removeEventListener('load', introLoadHandler);
+			introLoadHandler = null;
+		}
+	};
+
+	const beginStoryFromIntro = () => {
+		if (introComplete) {
+			return;
+		}
+
+		introComplete = true;
+		introActive = false;
+		tearDownIntroListeners();
+
+		const prefersReducedMotion =
+			typeof window.matchMedia === 'function' &&
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const finalizeStart = () => {
+			if (subtitleElement && subtitleElement.isConnected) {
+				subtitleElement.remove();
+			}
+			if (body) {
+				body.classList.remove('game-starting');
+				body.classList.remove('prestart');
+				body.classList.remove('prestart-ready');
+				body.classList.remove('prestart-exit');
+				body.classList.add('game-started');
+			}
+			storyTyper.start();
+		};
+
+		if (subtitleElement) {
+			subtitleElement.setAttribute('aria-hidden', 'true');
+		}
+
+		if (body) {
+			body.classList.add('game-starting');
+		}
+
+		if (prefersReducedMotion) {
+			finalizeStart();
+			return;
+		}
+
+		if (body) {
+			window.requestAnimationFrame(() => {
+				body.classList.add('prestart-exit');
+			});
+		}
+
+		window.setTimeout(finalizeStart, INTRO_TRANSITION_MS);
+	};
+
+	const initialiseIntroScreen = () => {
+		if (!useIntroScreen || !body) {
+			return false;
+		}
+
+		introActive = true;
+		if (subtitleElement) {
+			subtitleElement.setAttribute('aria-hidden', 'false');
+		}
+		applyIntroMetrics();
+
+		body.classList.add('prestart');
+		window.requestAnimationFrame(() => {
+			if (body && body.classList.contains('prestart')) {
+				body.classList.add('prestart-ready');
+			}
+		});
+
+		introKeydownHandler = (event) => {
+			if (!body || !body.classList.contains('prestart')) {
+				tearDownIntroListeners();
+				return;
+			}
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			beginStoryFromIntro();
+		};
+
+		introPointerHandler = (event) => {
+			if (!body || !body.classList.contains('prestart')) {
+				tearDownIntroListeners();
+				return;
+			}
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			beginStoryFromIntro();
+		};
+
+		introResizeHandler = () => {
+			if (!introActive || introComplete) {
+				tearDownIntroListeners();
+				return;
+			}
+			applyIntroMetrics();
+		};
+
+		introLoadHandler = () => {
+			if (introActive && !introComplete) {
+				applyIntroMetrics();
+			}
+		};
+
+		/** For future me
+		 * Please if you wanna spend some more time in this
+		 * make it so that it ignores the keypresses of 'ctrl' or something
+		 */
+		document.addEventListener('keydown', introKeydownHandler, true);
+		document.addEventListener('pointerdown', introPointerHandler, true);
+		window.addEventListener('resize', introResizeHandler);
+		window.addEventListener('orientationchange', introResizeHandler);
+		window.addEventListener('load', introLoadHandler);
+
+		if (
+			document.fonts &&
+			document.fonts.ready &&
+			typeof document.fonts.ready.then === 'function'
+		) {
+			document.fonts.ready
+				.then(() => {
+					if (introActive && !introComplete) {
+						applyIntroMetrics();
+					}
+				})
+				.catch(() => {
+					// Imgnore font loading errors for this sizing pass
+				});
+		}
+
+		return true;
+	};
 
 	const stopSkipIfNeeded = () => {
 		if (!skipActive) {
@@ -247,6 +463,9 @@
 	};
 
 	document.addEventListener('keydown', (event) => {
+		if (body && (body.classList.contains('prestart') || body.classList.contains('game-starting'))) {
+			return;
+		}
 		if (event.key !== 's' && event.key !== 'S') {
 			return;
 		}
@@ -259,5 +478,11 @@
 
 	if (rawLines.length) {
 		storyTyper.enqueueLines(rawLines);
+	}
+
+	const introInitialised = initialiseIntroScreen();
+
+	if (!introInitialised && rawLines.length) {
+		storyTyper.start();
 	}
 })();

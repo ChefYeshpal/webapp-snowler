@@ -981,6 +981,7 @@
 		disappearOption(index);
 		hidePanel();
 		storyTyper.enqueueLines(choice.followUp);
+	storyTyper.start();
 
 		if (choice.terminal) {
 			if (window.gameOverManager && typeof window.gameOverManager.prepareEnd === 'function') {
