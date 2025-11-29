@@ -852,6 +852,29 @@
 		'Trust the rope or search for safer descent?': ['trust-cliff-rope', 'search-safer-path'],
 	};
 
+	const weatherConfigByChoice = {
+		default: { intensity: 1, wind: 0 },
+		'whiteout-storm': { intensity: 3.8, wind: 0.12 },
+		'hunker-down-storm': { intensity: 3.2, wind: 0.06 },
+		'blind-march-storm': { intensity: 4.6, wind: 0.14 },
+		'follow-distant-lights': { intensity: 2.1, wind: 0.05 },
+		'stay-with-fire': { intensity: 0.9, wind: 0 },
+	};
+
+	const applyWeatherFor = (choiceId) => {
+		const snowAPI = window.snowAPI;
+		if (!snowAPI) {
+			return;
+		}
+		const config = weatherConfigByChoice[choiceId] || weatherConfigByChoice.default;
+		if (typeof snowAPI.setIntensity === 'function' && typeof config.intensity === 'number') {
+			snowAPI.setIntensity(config.intensity);
+		}
+		if (typeof snowAPI.setWind === 'function' && typeof config.wind === 'number') {
+			snowAPI.setWind(config.wind);
+		}
+	};
+
 	let currentChoices = [];
 	let highlightedIndex = -1;
 	let hideTimer = null;
@@ -913,6 +936,8 @@
 		if (!choice) {
 			return;
 		}
+
+		applyWeatherFor(choice.id);
 
 		// record choice in global tracker (if available)
 		if (window.choiceTracker && typeof window.choiceTracker.record === 'function') {

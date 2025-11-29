@@ -2,6 +2,7 @@
 	const BASE_SNOWFLAKE_COUNT = 120;
 	let targetFlakeCount = BASE_SNOWFLAKE_COUNT;
 	let intensityMultiplier = 1;
+	let windVelocity = 0;
 	const layer = document.createElement('div');
 	layer.className = 'snow-layer';
 	layer.setAttribute('aria-hidden', 'true');
@@ -84,6 +85,7 @@
 
 		// gradually nudge opacity for a slightly more visible storm when many flakes exist
 		flakes.forEach((flake) => {
+			flake.baseX += windVelocity * delta;
 			flake.y += flake.speed * delta;
 			const sway = Math.sin(time * flake.driftFrequency + flake.driftOffset) * flake.amplitude;
 			const x = flake.baseX + sway;
@@ -122,6 +124,11 @@
 		trimFlakes();
 	};
 
+	const setWind = (velocity) => {
+		const numericVelocity = Number(velocity) || 0;
+		windVelocity = Math.max(-0.35, Math.min(0.35, numericVelocity));
+	};
+
 	const startAccumulation = () => {
 		if (accumulationActive) {
 			return;
@@ -147,6 +154,7 @@
 
 	window.snowAPI = {
 		setIntensity,
+		setWind,
 		startAccumulation,
 	};
 })();
