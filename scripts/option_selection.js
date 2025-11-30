@@ -486,7 +486,7 @@
 				'Your limbs flail wildly. Snow sprays. You pirouette into a pine tree.',
 				'A passing hiker films you and posts it online. You become a meme.',
 				'The hiker also calls rescue. You\'re saved, but at what cost?',
-				'Forget about your dignity now, it\'s worth nothing now.'
+				'Forget about your dignity now, it\'s worth nothing anymore.'
 			],
 			terminal: true,
 			terminalReason: 'meme'
