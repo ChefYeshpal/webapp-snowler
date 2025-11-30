@@ -23,9 +23,9 @@
 			followUp: [
 				'Chosen: walk on the trail',
 				'You crunch along the trail, every step punching through a crust of glittering ice.',
-				'Looking around, you notice that the forest is eerily quiet save for distant groans of bending trunks.',
+				'The forest is unusually quiet, with only the distant groan of bending trunks.',
 				'You keep walking, keeping an ear out for any sound you can hear.',
-				'The sun is half-way up now, a pale smear behind bruised clouds.',
+				'The sun edges higher, a pale smear behind bruised clouds.',
 				'Do you still not want to build a fire?'
 			],
 		},
@@ -44,11 +44,11 @@
 			label: 'Keep walking',
 			followUp: [
 				'Chosen: keep walking',
-				'You lower your head and push onward, the trail a thread of frost threading between pines.',
-				'Wind gnaws at your exposed cheeks, stealing warmth in greedy bites.',
-				'Your breath hangs in the darkening pines like smoke from a dying candle.',
-				'Evening smolders through the clouds, painting the snow in bruised amber.',
-				'Do you keep moving, double back for warmth, press into the storm, or embrace the cold entirely?'
+				'You lower your head and push onward, the trail a thin ribbon of frost between pines.',
+				'Wind chews at your cheeks and steals heat fast.',
+				'Your breath hangs in the darkening pines like tired smoke.',
+				'Evening smolders through the clouds, the snow turning a dull amber.',
+				'Do you keep moving, double back for warmth, press into the storm, or give in to the cold?'
 			],
 		},
 		'keep-walking-final': {
@@ -72,10 +72,10 @@
 			label: 'Double back for warmth',
 			followUp: [
 				'Chosen: double back for warmth',
-				'You pivot, stumbling through your own half-erased footprints.',
+				'You pivot and follow your own half-erased footprints.',
 				'Each step stings new life into your legs as you chase the promise of flame.',
 				'You find the cluster of sticks you abandoned, rimed with frost and waiting.',
-				'Will you take it out to start a fire?'
+				'Will you take the lighter out to start a fire?'
 			],
 		},
 		'start-fire': {
@@ -83,11 +83,11 @@
 			label: 'Get a fire going',
 			followUp: [
 				'Chosen: start a fire',
-				'You get on your knees, stacking the sticks with trembling precision.',
+				'You kneel and stack the sticks with careful hands.',
 				'Your fingers snap the lighter; sparks leap until a reluctant ember blooms.',
-				'Orange light stains the snow, smoke curling like a signal toward the bruise-colored sky.',
+				'Orange light stains the snow, smoke lifting toward the bruised sky.',
 				'Heat crawls back into your bones, painful and glorious.',
-				'The fire steadies. Stay put or make a plan?'
+				'The fire steadies. Do you stay or make a plan?'
 			],
 		},
 		'stay-with-fire': {
@@ -109,9 +109,9 @@
 			label: 'Scout with a torch',
 			followUp: [
 				'Chosen: scout with a torch',
-				'You snap a burning branch free and stalk into the trees, the flame painting skeletal trunks gold.',
+				'You take a burning branch and step into the trees, the flame painting the trunks gold.',
 				'The wind smears smoke across your face while shadows jump like startled animals.',
-				'You find two paths: one leading to a gutted ranger station, another to a cliff edge with strange markings.',
+				'You find two paths: one to a stripped ranger station, another to a cliff edge with strange markings.',
 				'Which way do you go?'
 			],
 		},
@@ -132,10 +132,10 @@
 			label: 'Use the radio to call for help',
 			followUp: [
 				'Chosen: use radio',
-				'You broadcast your location. A voice crackles back: "Copy. Stay put. Help arriving dawn."',
+				'You broadcast your location. A voice crackles back: "Copy. Stay put. Help at dawn."',
 				'You wait, feeding the small stove. Hours pass in warm silence.',
 				'Dawn brings a helicopter. You made it.',
-				'Later, you ask about the tunnel. They go very quiet.'
+				'Later, you ask about the tunnel. They say little.'
 			],
 			terminal: true,
 			terminalReason: 'rescued'
@@ -170,10 +170,10 @@
 			label: 'Hide behind the cage',
 			followUp: [
 				'Chosen: hide behind cage',
-				'You crouch, breath held. The thing enters—too tall, too many joints.',
+				'You crouch and hold your breath. Something enters—tall, joints in all the wrong places.',
 				'It sniffs the air. Then it speaks your name.',
-				'You didn\'t tell anyone your name. The cage wasn\'t for keeping something in.',
-				'It was for keeping something out. You.'
+				'You didn\'t tell anyone your name. The cage wasn\'t meant to keep something in.',
+				'It was meant to keep something out. You.'
 			],
 			terminal: true,
 			terminalReason: 'predator'
@@ -223,8 +223,8 @@
 				'Chosen: follow distant lights',
 				'Across the valley, a row of warm, unmoving stars—windows—blink through the white.',
 				'You angle downhill, guarding your balance, calling out when the wind dips.',
-				'A plowed road appears like a river of gravel. A truck idles, then a door opens.',
-				'Gloved hands help you into heat and questions. You made it.'
+				'A plowed road appears like a river of gravel. A truck idles, and then a door opens.',
+				'Gloved hands help you into heat and questions.'
 			],
 			terminal: true,
 			terminalReason: 'rescued'
@@ -276,7 +276,7 @@
 			followUp: [
 				'Chosen: run for it',
 				'You bolt into the timberline, branches clawing and snow grabbing ankles.',
-				'A crack splits the quiet. You fall into it and don’t get up.'
+				'A crack splits the quiet. You fall into it and don\'t get up.'
 			],
 			terminal: true,
 			terminalReason: 'injury'
@@ -318,7 +318,7 @@
 			label: 'Freeze and hope',
 			followUp: [
 				'Chosen: freeze and hope',
-				'Predators read silence like a map. The circle tightens, then breaks.',
+				'Predators read silence well. The circle tightens, then breaks.',
 				'Winter does the rest.'
 			],
 			terminal: true,
@@ -354,7 +354,7 @@
 				'Chosen: enter the cave',
 				'The cave is dark and damp, but it shields you from the wind.',
 				'You light a small fire, the flickering flames casting eerie shadows on the walls.',
-				'As you settle in, you hear a faint growl from deeper within the cave.',
+				'As you settle in, you hear something... a tune? it\'s coming from deeper within the cave.',
 				'Do you investigate the sound or barricade the entrance?'
 			],
 		},
@@ -387,8 +387,8 @@
 				'Chosen: follow the stream',
 				'The frozen stream glitters like a silver ribbon, leading you through the forest.',
 				'You find a small, abandoned cabin with a broken window and a sagging roof.',
-				'Inside, there’s a rusted stove and a pile of moth-eaten blankets, and a button phone on 20% charge',
-				'Do you try to repair the cabin or move on?'
+				'Inside, there\'s a rusted stove and a pile of moth-eaten blankets, and a keypad phone on 20% charge',
+				'Do you try to repair the cabin, use the phone or move on?'
 			],
 		},
 		'slip-on-ice': {
@@ -409,7 +409,7 @@
 				'Chosen: ignore food and rest',
 				'You ration nothing and push through the ache, promising a later reward.',
 				'The promise runs out before the day does; your steps blur, thoughts thin.',
-				'You sit down "just a minute."'
+				'You sit down "just a minute maybe..."'
 			],
 			terminal: true,
 			terminalReason: 'starvation'
@@ -419,10 +419,10 @@
 			label: 'Eat handfuls of snow for hydration',
 			followUp: [
 				'Chosen: eat snow',
-				'You scoop up pristine snow and shove it into your mouth, convinced this is smart survival.',
-				'Your core temperature plummets faster than your hopes.',
-				'Brain freeze evolves into just... freeze.',
-				'The last thing you see is your own teeth chattering independently, and possibly explosive diahheria.'
+				'You scoop clean snow and eat it, hoping it helps.',
+				'The cold hits your core; your body temperature drops.',
+				'What starts as brain freeze becomes real hypothermia.',
+				'Everything slows. You fade in the quiet snow.'
 			],
 			terminal: true,
 			terminalReason: 'brain_freeze'
@@ -444,11 +444,10 @@
 			label: 'Tell Steve your feelings',
 			followUp: [
 				'Chosen: befriend Steve',
-				'You sit beside Steve and pour your heart out.',
-				'The cold must be getting to you because Steve seems... understanding?',
-				'In fact, Steve whispers ancient secrets of the forest. He considers you to be his parent.',
-				'And it turns out Steve knows where the ranger station is, so Steve was helpful all along.',
-				'You follow Steve\'s directions and find warmth and rescue, at the expense of leaving steve behind.'
+				'You sit beside Steve and talk, mostly to steady your thoughts.',
+				'It helps more than you expected. You notice a landmark you missed.',
+				'Following that, you pick up a faint trail toward a ranger station.',
+				'You leave Steve standing watch and make it to warmth.'
 			],
 			terminal: true,
 			terminalReason: 'rescued'
@@ -458,9 +457,9 @@
 			label: 'Abandon Steve and move on',
 			followUp: [
 				'Chosen: abandon Steve',
-				'You turn your back on Steve without so much as a goodbye.',
-				'The wind picks up. You swear you hear disappointed snowman sighing.',
-				'A tree branch falls exactly where you\'re standing. Steve\'s revenge is swift and brutal.'
+				'You turn away from Steve and keep moving.',
+				'The wind rises. A branch snaps and falls hard.',
+				'You don\'t get back up.'
 			],
 			terminal: true,
 			terminalReason: 'steve_revenge'
@@ -471,10 +470,10 @@
 			followUp: [
 				'Chosen: negotiate with squirrels',
 				'You approach a tree where several squirrels are chittering.',
-				'You offer them your last granola bar in exchange for directions.',
-				'They take the bar and give you absolutely nothing.',
-				'One of them throws an acorn at your head.',
-				'Negotiations have failed. What\'s your next move?'
+				'You leave a granola bar near their tree, hoping they\'ll lead you somewhere.',
+				'They eat and scatter. No help at all.',
+				'An acorn clips your hood on the way down.',
+				'No deal. What\'s your next move?'
 			],
 		},
 		'interpretive-dance': {
@@ -482,11 +481,10 @@
 			label: 'Perform interpretive dance to summon help',
 			followUp: [
 				'Chosen: interpretive dance',
-				'You begin an elaborate dance routine, expressing your survival struggle through movement.',
-				'Your limbs flail wildly. Snow sprays. You pirouette into a pine tree.',
-				'A passing hiker films you and posts it online. You become a meme.',
-				'The hiker also calls rescue. You\'re saved, but at what cost?',
-				'Forget about your dignity now, it\'s worth nothing anymore.'
+				'You try anything to be seen—big arm waves and shouts.',
+				'You slip, catch yourself on a pine, and keep signaling.',
+				'A hiker records a few seconds that later goes viral.',
+				'They also call for help. You\'re saved. The clip follows you for a while.'
 			],
 			terminal: true,
 			terminalReason: 'meme'
@@ -496,10 +494,9 @@
 			label: 'Challenge a bear to single combat',
 			followUp: [
 				'Chosen: challenge a bear',
-				'You spot a bear in the distance and, driven by hypothermia-induced confidence, issue a formal challenge.',
-				'The bear looks confused. You assume a fighting stance.',
-				'The bear accepts. You immediately regret everything.',
-				'You probably should have taken those Taikwondo classes...'
+				'You spot a bear and, not thinking clearly, square up to it.',
+				'It hesitates, then charges. You regret the choice instantly.',
+				'There\'s no time to run or hide. The snow goes quiet.'
 			],
 			terminal: true,
 			terminalReason: 'bear_combat'
@@ -509,11 +506,11 @@
 			label: 'Build a signal fire for aliens',
 			followUp: [
 				'Chosen: summon aliens',
-				'You arrange the fire in a precise geometric pattern, hoping extraterrestrials will notice.',
-				'The flames spell out "HELP" in what you assume is universal language.',
-				'A bright light descends from the clouds. Success!',
+				'You lay out the fire in a wide pattern to draw attention.',
+				'The flames spell "HELP" against the snow.',
+				'A bright light drops through the clouds—rotor wash, not a saucer.',
 				'It\'s a park ranger helicopter. Close enough.',
-				'The pilot asks if you\'re okay. You lie and say yes.'
+				'The pilot asks if you\'re okay. You nod and climb aboard.'
 			],
 			terminal: true,
 			terminalReason: 'alien_rescue'
@@ -526,7 +523,7 @@
 				'You strip off your jacket and howl at the sky.',
 				'The cold no longer bothers you. Hair sprouts everywhere.',
 				'Your feet grow to size 23. You no longer need civilization.',
-				'Years later, hikers report a friendly yeti who gives surprisingly good trail advice.',
+				'Years later, hikers report a friendly yeti who gives surprisingly good trail advice and tasty cupcakes.',
 				'You have transcended.'
 			],
 			terminal: true,
@@ -539,8 +536,8 @@
 				'Chosen: call mom',
 				'You fumble for your phone with frozen fingers. One bar of signal!',
 				'Your mom answers on the first ring. "I told you to bring a jacket," she says.',
-				'You\'re too cold to argue. She conference calls the park rangers.',
-				'You\'re rescued. She never lets you forget this.'
+				'You\'re too cold to argue. She conference calls the park rangers (yes on the keypad phone).',
+				'You\'re rescued. She\'ll never let you forget this.'
 			],
 			terminal: true,
 			terminalReason: 'mom_rescue'
@@ -588,7 +585,7 @@
 				'The handwriting spirals into madness. The last entry: "They\'re not wolves. They never were."',
 				'Something scratches at the cabin door. Four rhythmic scrapes.',
 				'The bones begin to rattle. The temperature drops twenty degrees in five seconds.',
-				'You realize the cabin isn\'t abandoned—you\'re trespassing.',
+				'You realize the cabin isn\'t abandoned, you\'re trespassing.',
 				'Run into the night or hide in the cellar?'
 			],
 		},
@@ -641,7 +638,7 @@
 				'You shout insults in their direction. They chitter what sounds like laughter.',
 				'You throw a snowball. Direct hit. The chittering stops.',
 				'Suddenly, thirty squirrels emerge from the trees, organized in formation.',
-				'This was a mistake. What\'s your defense strategy?'
+				'This was very likely a mistake. What\'s your defense strategy?'
 			],
 		},
 		'offer-truce': {
@@ -649,11 +646,11 @@
 			label: 'Offer a formal truce',
 			followUp: [
 				'Chosen: offer truce',
-				'You kneel in the snow and offer your last pack of nuts.',
+				'You kneel in the snow and offer your nuts.',
 				'The alpha squirrel approaches, sniffs, and accepts.',
 				'In exchange, they lead you to a forgotten ranger cache full of supplies.',
 				'You survive three more days until rescue, sustained by squirrel diplomacy.',
-				'You write a paper about it later. No one believes you.'
+				'You write a paper about it later. No one believes you, but you survived at the expense of your nuts.'
 			],
 			terminal: true,
 			terminalReason: 'rescued'
@@ -667,7 +664,7 @@
 				'One leaps onto your head. Then another. Then seven.',
 				'You are buried in furious, chittering chaos.',
 				'Rescuers find you three days later, traumatized but alive.',
-				'You never go near trees again.'
+				'You never go near trees again, dendrophobia they call it.'
 			],
 			terminal: true,
 			terminalReason: 'rescued'
@@ -740,10 +737,10 @@
 			label: 'Eat the questionable red berries',
 			followUp: [
 				'Chosen: eat berries',
-				'Hunger overrides judgment. You pluck and swallow.',
-				'They taste like copper and regret.',
-				'Within minutes, the forest begins to breathe. Colors intensify.',
-				'A deer speaks to you in your grandmother\'s voice.',
+				'Hunger wins. You eat a few, hoping they\'re safe.',
+				'They taste sharp and wrong.',
+				'Minutes later, your vision wobbles and colors bloom too bright.',
+				'You hear voices that aren\'t there.',
 				'Are you hallucinating or ascending?'
 			],
 		},
@@ -820,34 +817,29 @@
 		'What will you do?': ['trail', 'gather-wood', 'find-shelter'],
 		'Do you still not want to build a fire?': ['gather-wood', 'keep-walking', 'build-snowman', 'eat-snow', 'negotiate-squirrels'],
 		'Will you take it out to start a fire?': ['collect-more-wood', 'start-fire', 'interpretive-dance'],
-		'Do you keep moving, double back for warmth, press into the storm, or embrace the cold entirely?': ['keep-walking-final', 'return-for-wood', 'whiteout-storm', 'become-yeti'],
-		'The fire steadies. Stay put or make a plan?': ['stay-with-fire', 'scout-with-torch', 'summon-aliens'],
+		'Will you take the lighter out to start a fire?': ['collect-more-wood', 'start-fire', 'interpretive-dance'],
+		'Do you keep moving, double back for warmth, press into the storm, or give in to the cold?': ['keep-walking-final', 'return-for-wood', 'whiteout-storm', 'become-yeti'],
+		'The fire steadies. Do you stay or make a plan?': ['stay-with-fire', 'scout-with-torch', 'summon-aliens'],
 		'Will you try to rekindle it or keep searching?': ['start-fire', 'keep-searching', 'scout-frozen-lake'],
 		'Do you enter the cave or follow the stream?': ['enter-cave', 'follow-stream', 'challenge-bear'],
 		'Do you investigate the sound or barricade the entrance?': ['investigate-sound', 'barricade-entrance'],
-		'Do you help the wolf or retreat to the entrance?': ['help-wolf', 'return-for-wood'],
-		'Do you try to repair the cabin or move on?': ['repair-cabin', 'keep-walking', 'call-mom'],
-		'The frozen stream looks fast and safe. Hurry or take care?': ['slip-on-ice', 'trail'],
-		'Food can wait, right? Rest or push on?': ['linger-too-long', 'keep-walking', 'write-memoir'],
+		'Do you try to repair the cabin, use the phone or move on?': ['repair-cabin', 'keep-walking', 'call-mom'],
 		'A row of lights winks through the storm. Follow or stay?': ['follow-distant-lights', 'stay-with-fire'],
 		'Do you hunker down or keep moving blindly?': ['hunker-down-storm', 'blind-march-storm'],
-		'Shouting ahead. Figures on the ridge. Approach or avoid?': ['raider-encounter', 'whiteout-storm'],
 		'Do you run or try to parley?': ['run-from-raiders', 'parley-with-raiders'],
-		'Howls to the east. Investigate or steer away?': ['wolf-prowl', 'trail'],
 		'Do you brandish fire or freeze?': ['brandish-fire', 'freeze-before-pack'],
 		'What now?': ['befriend-steve', 'abandon-steve'],
-		'What\'s your next move?': ['escalate-squirrel-war', 'start-fire', 'interpretive-dance'],
+		'No deal. What\'s your next move?': ['escalate-squirrel-war', 'interpretive-dance', 'keep-walking'],
 		'Open the trapdoor or ignore it and rest?': ['open-trapdoor', 'ignore-trapdoor'],
 		'Read the journal or flee the cabin immediately?': ['read-cursed-journal', 'flee-cursed-cabin'],
 		'Run into the night or hide in the cellar?': ['flee-cursed-cabin', 'hide-in-cellar'],
-		'What\'s your defense strategy?': ['offer-truce', 'fight-squirrels', 'build-snow-fort'],
+		'This was very likely a mistake. What\'s your defense strategy?': ['offer-truce', 'fight-squirrels', 'build-snow-fort'],
 		'Do you investigate the car or turn back?': ['investigate-frozen-car', 'turn-back-from-lake'],
 		'Grab the flare gun and run, or leave it and move carefully?': ['grab-flare-run', 'leave-flare-carefully'],
 		'Are you hallucinating or ascending?': ['follow-deer-vision', 'resist-hallucination', 'eat-questionable-berries'],
 		'Do you stay in your fort or abandon it for mobile warmth?': ['defend-snow-fort', 'abandon-fort'],
 		'Which way do you go?': ['explore-ranger-station', 'investigate-cliff-markings'],
 		'Use the radio to call for help or explore the forbidden tunnel?': ['use-radio', 'explore-forbidden-tunnel'],
-		'Exit fast or hide behind the cage?': ['sprint-from-tunnel', 'hide-behind-cage'],
 		'Behind you, something large breathes. Exit fast or hide behind the cage?': ['sprint-from-tunnel', 'hide-behind-cage'],
 		'Trust the rope or search for safer descent?': ['trust-cliff-rope', 'search-safer-path'],
 	};
