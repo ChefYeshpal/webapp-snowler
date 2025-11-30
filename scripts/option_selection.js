@@ -387,7 +387,7 @@
 				'Chosen: follow the stream',
 				'The frozen stream glitters like a silver ribbon, leading you through the forest.',
 				'You find a small, abandoned cabin with a broken window and a sagging roof.',
-				'Inside, there’s a rusted stove and a pile of moth-eaten blankets.',
+				'Inside, there’s a rusted stove and a pile of moth-eaten blankets, and a button phone on 20% charge',
 				'Do you try to repair the cabin or move on?'
 			],
 		},
