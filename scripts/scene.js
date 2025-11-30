@@ -10,6 +10,39 @@
 	const titleShell = document.querySelector('.title-shell');
 	const titleElement = document.querySelector('.story-title');
 	const subtitleElement = document.querySelector('.story-subtitle');
+	const snowAPI = window.snowAPI;
+	const DEFAULT_SNOW_INTENSITY = 1;
+	const DEFAULT_SNOW_WIND = 0;
+	const INTRO_STORM_INTENSITY = 4.6;
+	const INTRO_STORM_WIND = 0.14;
+	let introWeatherActive = false;
+
+	const applyIntroWeather = () => {
+		// just for ze intro zcreen
+		if (!snowAPI || introWeatherActive) {
+			return;
+		}
+		if (typeof snowAPI.setIntensity === 'function') {
+			snowAPI.setIntensity(INTRO_STORM_INTENSITY);
+		}
+		if (typeof snowAPI.setWind === 'function') {
+			snowAPI.setWind(INTRO_STORM_WIND);
+		}
+		introWeatherActive = true;
+	};
+
+	const restoreDefaultWeather = () => {
+		if (!snowAPI || !introWeatherActive) {
+			return;
+		}
+		if (typeof snowAPI.setIntensity === 'function') {
+			snowAPI.setIntensity(DEFAULT_SNOW_INTENSITY);
+		}
+		if (typeof snowAPI.setWind === 'function') {
+			snowAPI.setWind(DEFAULT_SNOW_WIND);
+		}
+		introWeatherActive = false;
+	};
 
 	class StoryTyper {
 		constructor(container, options = {}) {
@@ -320,6 +353,7 @@
 		introComplete = true;
 		introActive = false;
 		tearDownIntroListeners();
+		restoreDefaultWeather();
 
 		const prefersReducedMotion =
 			typeof window.matchMedia === 'function' &&
@@ -367,6 +401,7 @@
 		}
 
 		introActive = true;
+		applyIntroWeather();
 		if (subtitleElement) {
 			subtitleElement.setAttribute('aria-hidden', 'false');
 		}
