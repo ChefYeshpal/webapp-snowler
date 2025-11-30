@@ -210,6 +210,13 @@ body.prestart.prestart-exit .story-subtitle {
 	transform: translateY(-18px);
 }
 
+/* I probably should have added this beforehand... */
+body.game-started .story-subtitle {
+	opacity: 0.82;
+	transform: translateY(0);
+	max-height: 120px;
+}
+
 body.mode-cave ::-webkit-scrollbar {
 	background-color: var(--scrollbar-track);
 }

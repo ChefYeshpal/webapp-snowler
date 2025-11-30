@@ -361,7 +361,7 @@
 
 		const finalizeStart = () => {
 			if (subtitleElement && subtitleElement.isConnected) {
-				subtitleElement.remove();
+				subtitleElement.textContent = "Press 's' to speed up";
 			}
 			if (body) {
 				body.classList.remove('game-starting');
@@ -374,7 +374,7 @@
 		};
 
 		if (subtitleElement) {
-			subtitleElement.setAttribute('aria-hidden', 'true');
+			subtitleElement.setAttribute('aria-hidden', 'false');
 		}
 
 		if (body) {
